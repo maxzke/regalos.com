@@ -1,0 +1,13 @@
+.encabezado{
+    /* background-color:#dedede; */
+    background-color:#7222b0;
+}
+.contenido{
+    background-color:#f1f1f1;
+}
+#cart{    
+    height: 300px;
+    width: auto;
+    border: none;
+    overflow-y: scroll;
+}

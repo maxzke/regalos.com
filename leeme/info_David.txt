@@ -1,0 +1,38 @@
+The username cannot exceed 12 characters in length.
+
+'auth_level' => '9' ******Administrado
+'auth_level' => '6' ******Mesero
+'auth_level' => '1' ******Cocina
+
+//////////////////////////
+user****pasword
+admin***Admin123456
+mesero***Admin123456
+cocina***Admin123456
+//////////////////////////
+
+USUARIO CREADO:
+'username'   => 'david',
+'passwd'     => 'Admin123456',
+'email'      => 'ramzdave@gmail.com',
+'auth_level' => '9'
+
+'username'   => 'admin4',
+'passwd'     => 'Admin123456',
+'email'      => 'ramzdave4@gmail.com',
+'auth_level' => '1', 
+
+if( $this->require_role('admin') ){
+// Admin sees this ... 
+//If an admin is not logged in and tries to access the index method, they will be redirected to the login form.
+		}
+
+5 intentos fallidos
+esperar 10 min
+http://localhost/examples/recover
+
+TABLA CLIENTES EL ID=1
+id=1 le pertenece por default a publico general, 
+registrar en la tabla CLIENTES con id=1 como publico general siempre
+punto_de_venta.js tiene por default valor=1 cliente default cuando no se selecciona ningun cliente
+
