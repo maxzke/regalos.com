@@ -91,9 +91,9 @@ class Ventas_model extends CI_Model{
         $query = $this->db->query($sql);
         return $query->result_array();
     }
-    function getCostoProductoByNombreProducto($name){
+    function getCostoProductoBycodigoProducto($codigo){
         $this->db->select('costo');
-        $this->db->where('nombre',$name);
+        $this->db->where('codigo',$codigo);
         return $this->db->get('productos')->row_array();
     }
     

@@ -22,10 +22,9 @@ class Producto_model extends CI_Model
     /*
      * Get producto codigo or Nombre
      */
-    function get_producto_codigo_nombre($parametro)
+    function get_producto_codigo($codigo)
     {
-        $this->db->where('nombre', $parametro);
-        $this->db->or_where('codigo', $parametro);
+        $this->db->where('codigo', $codigo);
         return $this->db->get('productos')->result_array();
     }
         
@@ -68,7 +67,7 @@ class Producto_model extends CI_Model
      * MODELOS DESCONTAR DE INVENTARIO LA CANTIDAD VENDIDA
      */
     function descuentaStock($nombre,$cantidad){
-        $this->db->where('nombre',$nombre);
+        $this->db->where('codigo',$nombre);
         $this->db->select('id,stock');
         $result = $this->db->get('productos')->result_array();
         $restante = $result[0]['stock'] - $cantidad;

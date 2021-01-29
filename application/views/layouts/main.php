@@ -115,7 +115,7 @@
             </nav>
             <!-- End Navbar -->
         </div>
-        <div class="page-inner">
+        <div class="page-inner bg-secondary">
             <div class="row mt-5">
                 <div class="col-md-12">
                     <!-- Custom template | don't include it in your project! -->		
@@ -180,16 +180,18 @@
     <script src="<?php echo base_url(); ?>assets/js/plugin/sweetalert/sweetalert.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/sweetalert2.all.min.js"></script>
     <!-- ALERTAS COCINA -->
-    <script src="<?php echo base_url(); ?>assets/js/alertas.js"></script>
+    
     <!-- Atlantis JS -->
     <script src="<?php echo base_url(); ?>assets/js/atlantis.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/clock.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/jQuery.SimpleCart.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/tablas.js"></script>
     <script>
             $('#cart').simpleCart();
         
     </script>
+    <script src="<?php echo base_url(); ?>assets/js/tablas.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/alertas.js"></script>
+    
 </body>
 
 </html>

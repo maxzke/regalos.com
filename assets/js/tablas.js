@@ -299,8 +299,9 @@ function insertarCambio(importe) {
     const lblCambio = document.querySelector('#lblCambio');
     //const tdImporte = document.querySelector('.tdImporte');
     if (importe > parseFloat(parametros.importe_nota)) {
-        let cambio = importe - parseFloat(parametros.importe_nota);
-        lblCambio.innerHTML = `<span class="h1 text-warning">Cambio: $ ${cambio.toFixed(1)}</span>`;
+		let cambio = importe - parseFloat(parametros.importe_nota);
+		let newFormato = new Intl.NumberFormat("en-IN").format(cambio);
+        lblCambio.innerHTML = `<span class="h1 text-warning">Cambio: $ ${newFormato}</span>`;
         //tdImporte.innerHTML = parametros.importe_nota;
         parametros.importe_pago = parametros.importe_nota;
     }else{

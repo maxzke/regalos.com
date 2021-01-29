@@ -26,9 +26,25 @@ let parametros = {
 
     getCarrito();
     
+    function insertProductToCartManual(nombre, precio, cantidad){
+        let item = {
+            name:nombre,
+            price:precio,
+            count:cantidad
+        }
+        let carrito = [];
+        carrito = JSON.parse(localStorage.getItem("shoppingCartRegalos"));
+        if (carrito === null) {
+            carrito = [];
+        } 
+        carrito.push(item);
+        localStorage.setItem("shoppingCartRegalos",JSON.stringify(carrito));
+        getCarrito();
+    }
+
     async function getCarrito(){
-        if (localStorage.getItem("shoppingCart") != null) {
-            mostrarCarrito(JSON.parse(localStorage.getItem("shoppingCart")));   
+        if (localStorage.getItem("shoppingCartRegalos") != null) {
+            mostrarCarrito(JSON.parse(localStorage.getItem("shoppingCartRegalos")));   
         }        
     }
     async function ajaxCarrito(id_mesa,url){
@@ -92,7 +108,7 @@ let parametros = {
         if(respuesta.success){
             let str = respuesta;         
             console.log(str);
-            localStorage.setItem("shoppingCart",str );   
+            localStorage.setItem("shoppingCartRegalos",str );   
         }else{
             this.cart = [];
         }        
@@ -111,7 +127,9 @@ let parametros = {
     }
 
 
-
+/* *********************************************************************************************
+ * *********************************************************************************************
+ **********************************************************************************************/
 /*
  * jQuery Simple Shopping Cart v0.1
  * Basis shopping cart using javascript/Jquery.
@@ -125,6 +143,7 @@ let parametros = {
     var defaults = {
         cart: [],
         addtoCartClass: '.sc-add-to-cart',
+        addtoCartClassCode: '.sc-add-to-cart-code',
         cartProductListClass: '.cart-products-list',
         totalCartCountClass: '.total-cart-count',
         totalCartCostClass: '.total-cart-cost',
@@ -133,10 +152,11 @@ let parametros = {
         vaciarCarrito : '.limpiar_carrito'
     };
 
-    function Item(name, price, count) {
+    function Item(name, price, count, codigo) {
         this.name = name;
         this.price = price;
         this.count = count;
+        this.codigo = codigo;
     }
     /*Constructor function*/
     function simpleCart(domEle, options) {
@@ -175,7 +195,10 @@ let parametros = {
             $(this.options.cartProductListClass).html(mi._displayCart());
             $(this.options.totalCartCountClass).html(" " + mi._totalCartCount() + " Artículos");
             let str = mi._totalCartCost();
-            $(this.options.totalCartCostClass).html(str);
+            let unDecimal = Number(str);
+            let formato = new Intl.NumberFormat("en-IN").format(unDecimal);
+            $(this.options.totalCartCostClass).html(formato);
+            getCarrito();
             
         },
         _setCartbuttons: function () {
@@ -188,18 +211,61 @@ let parametros = {
                 var name = $(this).attr("data-name");
                 var cost = Number($(this).attr("data-price"));
                 var amount = Number($(this).attr("data-quantity"));
-                var nombreMesa = $(this).attr("data-mesa");
-                var categoria = $(this).attr("data-categoria");
-                mi._addItemToCart(name, cost, amount);                
+                var codigo = $(this).attr("data-codigo");
+                mi._addItemToCart(name, cost, amount, codigo);                
                 mi._updateCartDetails();
-                mostrarCarrito(JSON.parse(localStorage.getItem("shoppingCart"))); 
+                //mostrarCarrito(JSON.parse(localStorage.getItem("shoppingCartRegalos"))); 
                 Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Agregado !',
-                showConfirmButton: false,
-                timer: 1500
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Agregado !',
+                    showConfirmButton: false,
+                    timer: 1500
                 })
+            });
+
+            $(document).on("keypress",this.options.addtoCartClassCode, function (e) {
+                if(e.keyCode == 13){
+                    let url = $('#ruta').val();
+                    let codigo = $('#inputBuscarPorCodigo').val();
+                    $.ajax({
+                        type: 'ajax',
+                        method: 'post',
+                        url: url+'producto/getProductoByCodigo',
+                        data: { codigo:codigo  },
+                        async: true,
+                        dataType:'json',
+                        success: function(response){
+                            if (response.success) {
+                            //insertProductToCartManual(n, p, 1);
+                            //********************* */
+                            var name = response.producto[0]['codigo']+' - '+response.producto[0]['nombre'];
+                            var cost = response.producto[0]['precio'];
+                            var amount = Number(1);
+                            var codigo = response.producto[0]['codigo'];
+                            //var categoria = $(this).attr("data-categoria");
+                            mi._addItemToCart(name, cost, amount, codigo);                
+                            mi._updateCartDetails();
+                            $('#inputBuscarPorCodigo').val('');
+                            //mostrarCarrito(JSON.parse(localStorage.getItem("shoppingCartRegalos")));
+                            //********************* */
+                            }else{
+                            Swal.fire(
+                                'Error!',
+                                'Codigo no encontrado',
+                                'error'
+                                )
+                            }
+            
+                        },
+                        error: function(response){              
+                            alert('No se pudieron eliminar');
+                        }
+            
+                    });
+                    
+                }//end if
+                
             });
 
             $(this.options.showcartID).on("change", this.options.itemCountClass, function (e) {
@@ -208,7 +274,8 @@ let parametros = {
                 var count = $(this).val();
                 var name = $(this).attr("data-name");
                 var cost = Number($(this).attr("data-price"));
-                mi._removeItemfromCart(name, cost, count);
+                var codigo = $(this).attr("data-codigo");
+                mi._removeItemfromCart(name, cost, count, codigo);
                 mi._updateCartDetails();
             });
 
@@ -219,16 +286,17 @@ let parametros = {
 
         },
         /* Helper Functions */
-        _addItemToCart: function (name, price, count) {
+        _addItemToCart: function (name, price, count, codigo) {
             for (var i in this.cart) {
                 if (this.cart[i].name === name) {
                     this.cart[i].count++;
                     this.cart[i].price = price * this.cart[i].count;
+                    this.cart[i].codigo = codigo;
                     this._saveCart();
                     return;
                 }
             }
-            var item = new Item(name, price, count);
+            var item = new Item(name, price, count, codigo);
             this.cart.push(item);
             this._saveCart();
         },
@@ -267,13 +335,14 @@ let parametros = {
                     precioUnitario = (cartArray[i].price) / cartArray[i].count;
                     subtotaltem = cartArray[i].price;
                     let newFormato = new Intl.NumberFormat("en-IN").format(subtotaltem);
+                    let newFormatoUnitario = new Intl.NumberFormat("en-IN").format(precioUnitario);
                     output += `<div class='row cart-each-product'>
                             <div class='col-12 col-md-6 texto_articulo'>`+ cartArray[i].name +`</div>
                             <div class='col-3 offset-4 col-md-2 offset-md-0 align-self-center'>
                                 <input type='number' onfocus='this.select();' class='quantity form-control form-control-sm item-count col-md-10' data-name='` + cartArray[i].name + `' data-price='` + subtotaltem + `' min='0' value=` + cartArray[i].count + ` name='number'>
                             </div>
                             <div class='col-3 col-md-2 align-self-center texto_articulo'>
-                                ` + precioUnitario + `</i>
+                                ` + newFormatoUnitario + `</i>
                             </div>
                             <div class='col-3 col-md-2 align-self-center texto_articulo'>
                                 ` + newFormato + `</i>
@@ -281,7 +350,7 @@ let parametros = {
                         </div>
                         </div>
                             <hr>`;
-                            parametros.importe_nota += subtotaltem;
+                            parametros.importe_nota += Number(subtotaltem);
                 }
             }
             
@@ -290,11 +359,10 @@ let parametros = {
         _totalCartCost: function () {
             var totalCost = 0;
             for (var i in this.cart) {
-                totalCost += this.cart[i].price;
+                totalCost += Number(this.cart[i].price);
             }
-            let unDecimal = totalCost.toFixed(1);
-            let formato = new Intl.NumberFormat("en-IN").format(unDecimal);
-            return formato;
+            
+            return totalCost;
         },
         _listCart: function () {
             var cartCopy = [];
@@ -315,11 +383,11 @@ let parametros = {
             return calGST;
         },
         _saveCart: function () {            
-            localStorage.setItem("shoppingCart", JSON.stringify(this.cart));
+            localStorage.setItem("shoppingCartRegalos", JSON.stringify(this.cart));
         },
         _loadCart: function () {
             this.cart = [];
-            this.cart = JSON.parse(localStorage.getItem("shoppingCart"));
+            this.cart = JSON.parse(localStorage.getItem("shoppingCartRegalos"));
             if (this.cart === null) {
                 this.cart = [];
             } 
@@ -333,6 +401,232 @@ let parametros = {
         });
     };
 })(jQuery, window, document)
+/* *********************************************************************************************
+ * *********************************************************************************************
+ **********************************************************************************************/
 
 
+//SE DEFINE EL ESTILO Y DISEÑO DE LA ALERTA
+
+// $('#inputBuscarPorCodigo').keypress(function(e){
+//     if(e.keyCode == 13){
+//         let url = $('#ruta').val();;
+//         let codigo = $('#inputBuscarPorCodigo').val();
+//         $.ajax({
+//             type: 'ajax',
+//             method: 'post',
+//             url: url+'producto/getProductoByCodigo',
+//             data: { codigo:codigo  },
+//             async: true,
+//             dataType:'json',
+//             success: function(response){
+//               if (response.success) {
+//                   let n = response.producto[0]['codigo']+' - '+response.producto[0]['nombre'];
+//                   let p = response.producto[0]['precio'];
+//                 insertProductToCartManual(n, p, 1);
+//                 // Swal.fire(
+//                 //     'ok',
+//                 //     'codigo: '+response.producto[0]['codigo'],
+//                 //     'success'
+//                 //   )
+//               }else{
+//                 Swal.fire(
+//                     'Error!',
+//                     'Codigo no encontrado',
+//                     'error'
+//                   )
+//               }
+
+//             },
+//             error: function(response){              
+//               alert('No se pudieron eliminar');
+//             }
+
+//         });
+        
+//     }
+// });
+
+ $('#btnGuardarImprimirTicket').click(function(){
+    // let mensaje = {
+    //     title: 'Total: $ 350.00 <br> Pagado: $ 200.00 <br> Cambio: $ 50.00',
+    //     text:'',
+    //     button:'success'
+    // }
+    // alert_confirm_success(mensaje);
+    if (parametros.importe_pago < parametros.importe_nota) {
+        //venta a credito
+        if ( parametros.id_cliente == 0 ) {
+            //Alerta debe seleccionar cliente
+            //alertaSinClienteSeleccionado();
+        } else {
+            //cliente seleccionado
+            //se guardara venta a credito?
+            alertaPago();
+        }        
+    }else{
+        console.log('con pago' + parametros.importe_pago);
+        console.log(parametros);
+        sendData();
+    }
+ });
+
+ async function sendData() {
+    let baseUrl = $('#ruta').val();
+    const urlDetalles = baseUrl+'Ventas/registrar_venta';
+    const respAsyncDetalles = await postData(urlDetalles,parametros);
+    console.log(parametros);
+    if (respAsyncDetalles.success) {
+        console.log(respAsyncDetalles);
+        // parametros.nombre_cliente = '';
+        // parametros.carrito = '';
+        //ventaRealizada();  
+    }else{
+        console.log(respAsyncDetalles.error);
+        let msg = '';
+        respAsyncDetalles.error.forEach(element => {
+            msg += element.msg+'<br>';
+        });
+        Swal.fire(
+            'Error',
+            msg,
+            'error'
+        )
+    }
+}
+function getCarrito() {
+    parametros.carrito = getLocalStorage();        
+}
+function getLocalStorage() {
+    let items = [];
+    if (localStorage.getItem('shoppingCartRegalos') === null) {
+        items = [];
+    } else {
+        let info = localStorage.getItem('shoppingCartRegalos');
+        items = JSON.parse(info);
+    }
+    return items;
+}
+
+async function postData(url,datos) {
+    const response = $.ajax({
+        url: url,
+        data: { data: datos },
+        method: 'post',
+        async: true,
+        dataType: 'json',
+    });
+    const data = await response;
+    return data;
+}
+ 
+function abastecer(id,producto,url){
+    Swal.fire({
+        title: 'Abastecer <br>'+producto,
+        input: 'text',
+        inputAttributes: {
+            placeholder:'cantidad'
+          },
+        inputValue: '',
+        showCancelButton: true,
+        inputValidator: (cantidadP) => {
+          if (!cantidadP) {
+            return 'Introducir una cantidad !'
+          }else{
+            $.ajax({
+                type: 'ajax',
+                method: 'post',
+                url: url,
+                data: { id:id,cantidad:cantidadP  },
+                async: true,
+                dataType:'json',
+                success: function(response){
+                  if (response.success) {
+                    location.reload();
+                  }else{
+                    Swal.fire(
+                        'No se pudo Guardar!',
+                        'Intente de nuevo',
+                        'error'
+                      )
+                  }
+
+                },
+                error: function(response){
+                  console.log(datosFormEditar);
+                  alert('No se pudieron eliminar');
+                }
+
+            }); 
+          }
+        }
+      })                        
+}
+
+
+
+
+function alert_confirm_success(msg) {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success ml-2',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire(
+        msg.title,
+        msg.text,
+        msg.button
+    )
+}
+
+
+
+/**
+ * ALERTA DE BORRADO?
+ * REDIRIGE A LA PAGINA USANDO DATA-URL 
+ */
+function confirmar_alert(e){
+
+    let url = e.dataset.url;
+
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success ml-2',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+        title: 'Borrar registro?',
+        text: "Se borrará del sistema",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, borrar!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            // swalWithBootstrapButtons.fire(
+            //     'Deleted!',
+            //     'Your file has been deleted.',
+            //     'success'
+            // )
+            window.location = url;
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            // swalWithBootstrapButtons.fire(
+            //     'Cancelled',
+            //     'Your imaginary file is safe :)',
+            //     'error'
+            // )
+        }
+    })    
+    
+}
 

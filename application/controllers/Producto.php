@@ -12,6 +12,17 @@ class Producto extends MY_Controller{
         $this->load->model('Producto_model');
     } 
 
+    public function getProductoByCodigo(){
+        $cod = $this->input->post('codigo');
+        $response['producto'] = $this->Producto_model->get_producto_codigo($cod);
+        if ($response['producto'] == null) {
+            $response['success'] = FALSE;
+        }else{
+            $response['success'] = TRUE;
+        }
+        echo json_encode($response);
+    }
+
     /**
      * ABASTECER PRODUCTO
      */

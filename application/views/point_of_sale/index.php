@@ -1,8 +1,13 @@
 <div class="row">
-    <div class="col-md-2 py-2">
+    <div class="col-md-2 py-1">
             <strong>VENTA DE PRODUCTOS</strong>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-2">
+        <input type="text" class="form-control form-control-sm sc-add-to-cart-code" name="inputBuscarPorCodigo" id="inputBuscarPorCodigo" placeholder="Código"
+        onclick="this.select()">
+        <input type="hidden" name="url" id="ruta" value="<?php echo base_url(); ?>">
+    </div>
+    <div class="col-md-8">
         <button 
         class="btn btn-sm btn-info my-2 my-sm-0" 
         type="button" 
@@ -89,7 +94,10 @@
                         </tr>
                         <tr>
                             <td colspan="2">                                
-                                <button id="btnGuardarImprimirTicket" class="btn btn-lg btn-block btn-success mt-4 text-dark" type="button">
+                                <button 
+                                id="btnGuardarImprimirTicket" 
+                                class="btn btn-lg btn-block btn-success mt-4 text-dark" 
+                                type="button">
                                     <i class="fas fa-print fa-lg"></i>
                                     Guardar e Imprimir Ticket
                                 </button>
@@ -151,7 +159,8 @@
                         title="seleccionar"
                         data-name="<?php echo $p['codigo']." - ".$p['nombre']; ?>" 
                         data-price="<?php echo $p['precio']; ?>" 
-                        data-quantity="1">
+                        data-quantity="1"
+                        data-codigo="<?php echo $p['codigo']?>">
                         <i class="fas fa-check"></i>
                         </a>
                         <?php endif; ?>

@@ -21,8 +21,11 @@
             <div class="row">
 				<div class="col-md-12">
 				<!-- CONTENIDO -->
+				<div class="spinner-border text-info" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
 
-					<table id="productos-table" class="table table-sm table-hover table-bordered">
+					<table id="productos-table" class="table table-sm table-hover table-bordered bg-white">
                         <thead>
 							<tr>
 								<th>Código</th>
@@ -33,7 +36,7 @@
 								<!-- <th>Costo</th> 
 								<th>Imagen</th>
 								<th>Abastecer</th>-->
-								<th>Actions</th>
+								<th>Opciones</th>
 							</tr>
 						</thead>
 							<tbody>
