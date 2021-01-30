@@ -108,7 +108,7 @@ class Ventas extends REST_Controller {
                 /**
                  * MANDA IMPRIMIR TICKET
                  */
-                //$this->printTicket($this->importeNota,$this->netoPagado,$this->carrito);
+                $this->printTicket($this->importeNota,$this->netoPagado,$this->carrito);
 
                 $respuesta = array(
                         'success' => true,
@@ -447,15 +447,15 @@ class Ventas extends REST_Controller {
              * PARA LOGO.PNG
              * RUTA: CONTROLLERS/LOGO.PNG
              */
-            try{
-                $logo = EscposImage::load(__DIR__."\logo.png", false);
-                $printer->bitImage($logo);
-            }catch(Exception $e){/*No hacemos nada si hay error*/
-                $printer -> text($e -> getMessage()."\n");
-            }
+            // try{
+            //     $logo = EscposImage::load(__DIR__."\logo.png", false);
+            //     $printer->bitImage($logo);
+            // }catch(Exception $e){/*No hacemos nada si hay error*/
+            //     $printer -> text($e -> getMessage()."\n");
+            // }
             $printer -> setTextSize(3, 1);
-            //$printer -> text("MANHATTAN\n\n");
-            //$printer -> text("CANTABAR\n\n");
+            $printer -> text("REGALOS\n\n");
+            $printer -> text(".COM\n\n");
             $printer -> feed(2);   
             $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
             $printer -> setTextSize(1, 1);
@@ -552,7 +552,7 @@ class Ventas extends REST_Controller {
             $printer -> setJustification(Printer::JUSTIFY_CENTER);
             $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
             $printer -> text("Gracias por\n");
-            $printer -> text("su visita\n");
+            $printer -> text("su compra\n");
             $printer -> feed(5);
             /* Pulse Manda un PULSO y abre la caja registradora
             pulse($pin, $on_ms, $off_ms)

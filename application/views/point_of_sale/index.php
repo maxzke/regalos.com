@@ -157,12 +157,14 @@
                         data-toggle="tooltip" 
                         data-placement="top" 
                         title="seleccionar"
-                        data-name="<?php echo $p['codigo']." - ".$p['nombre']; ?>" 
+                        data-name="<?php echo $p['nombre']; ?>" 
                         data-price="<?php echo $p['precio']; ?>" 
                         data-quantity="1"
                         data-codigo="<?php echo $p['codigo']?>">
                         <i class="fas fa-check"></i>
                         </a>
+                        <?php else: ?>
+                            <span class="badge badge-danger">Agotado</span>
                         <?php endif; ?>
                     </td>
                 </tr>

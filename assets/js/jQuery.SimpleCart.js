@@ -18,47 +18,50 @@ let parametros = {
     importe_nota:'',
     pagos:'',
     netoPagado:''
-}    /**
+}    
+
+/*
      * 
      * Obtiene Carrito de la BD
      *  
      */
 
-    getCarrito();
+    //getCarrito();
     
-    function insertProductToCartManual(nombre, precio, cantidad){
-        let item = {
-            name:nombre,
-            price:precio,
-            count:cantidad
-        }
-        let carrito = [];
-        carrito = JSON.parse(localStorage.getItem("shoppingCartRegalos"));
-        if (carrito === null) {
-            carrito = [];
-        } 
-        carrito.push(item);
-        localStorage.setItem("shoppingCartRegalos",JSON.stringify(carrito));
-        getCarrito();
-    }
+    // function insertProductToCartManual(nombre, precio, cantidad){
+    //     let item = {
+    //         name:nombre,
+    //         price:precio,
+    //         count:cantidad
+    //     }
+    //     let carrito = [];
+    //     carrito = JSON.parse(localStorage.getItem("shoppingCartRegalos"));
+    //     if (carrito === null) {
+    //         carrito = [];
+    //     } 
+    //     carrito.push(item);
+    //     localStorage.setItem("shoppingCartRegalos",JSON.stringify(carrito));
+    //     getCarrito();
+    // }
 
-    async function getCarrito(){
-        if (localStorage.getItem("shoppingCartRegalos") != null) {
-            mostrarCarrito(JSON.parse(localStorage.getItem("shoppingCartRegalos")));   
-        }        
-    }
-    async function ajaxCarrito(id_mesa,url){
-        const response = $.ajax({
-            type: 'ajax',
-            method: 'post',
-            url: url,
-            data:{id:id_mesa},
-            async: true,
-            dataType: 'json'
-        });
-        const data = await response;
-        return data;
-    }
+    // async function getCarrito(){
+    //     if (localStorage.getItem("shoppingCartRegalos") != null) {
+    //         mostrarCarrito(JSON.parse(localStorage.getItem("shoppingCartRegalos")));   
+    //     }        
+    // }
+    // async function ajaxCarrito(id_mesa,url){
+    //     const response = $.ajax({
+    //         type: 'ajax',
+    //         method: 'post',
+    //         url: url,
+    //         data:{id:id_mesa},
+    //         async: true,
+    //         dataType: 'json'
+    //     });
+    //     const data = await response;
+    //     return data;
+    // }
+
     function mostrarCarrito(cartArray){
         parametros.importe_nota = 0;
         $("#show-cart").html(" ");
@@ -97,6 +100,7 @@ let parametros = {
         $("#totalCarrito").html(str);
         
     }
+
     /**
      * 
      * Guarda Carrito en la BD
@@ -129,7 +133,7 @@ let parametros = {
 
 /* *********************************************************************************************
  * *********************************************************************************************
- **********************************************************************************************/
+ ********************************************************************************************* */
 /*
  * jQuery Simple Shopping Cart v0.1
  * Basis shopping cart using javascript/Jquery.
@@ -198,6 +202,7 @@ let parametros = {
             let unDecimal = Number(str);
             let formato = new Intl.NumberFormat("en-IN").format(unDecimal);
             $(this.options.totalCartCostClass).html(formato);
+            //actualiza carrito para enviarlo post al guardar/cobrar la venta
             getCarrito();
             
         },
@@ -237,21 +242,24 @@ let parametros = {
                         dataType:'json',
                         success: function(response){
                             if (response.success) {
-                            //insertProductToCartManual(n, p, 1);
-                            //********************* */
-                            var name = response.producto[0]['codigo']+' - '+response.producto[0]['nombre'];
-                            var cost = response.producto[0]['precio'];
-                            var amount = Number(1);
-                            var codigo = response.producto[0]['codigo'];
-                            //var categoria = $(this).attr("data-categoria");
-                            mi._addItemToCart(name, cost, amount, codigo);                
-                            mi._updateCartDetails();
-                            $('#inputBuscarPorCodigo').val('');
-                            //mostrarCarrito(JSON.parse(localStorage.getItem("shoppingCartRegalos")));
-                            //********************* */
+                                if (response.producto[0]['stock'] > 0) {
+                                    var name = response.producto[0]['nombre'];
+                                    var cost = response.producto[0]['precio'];
+                                    var amount = Number(1);
+                                    var codigo = response.producto[0]['codigo'];
+                                    mi._addItemToCart(name, cost, amount, codigo);                
+                                    mi._updateCartDetails();
+                                    $('#inputBuscarPorCodigo').val('');
+                                } else {
+                                    Swal.fire(
+                                    'Agotado !',
+                                    response.producto[0]['nombre'],
+                                    'error'
+                                    )
+                                }                                
                             }else{
                             Swal.fire(
-                                'Error!',
+                                'Ups !',
                                 'Codigo no encontrado',
                                 'error'
                                 )
@@ -275,6 +283,7 @@ let parametros = {
                 var name = $(this).attr("data-name");
                 var cost = Number($(this).attr("data-price"));
                 var codigo = $(this).attr("data-codigo");
+                console.log('codigo: '+codigo);
                 mi._removeItemfromCart(name, cost, count, codigo);
                 mi._updateCartDetails();
             });
@@ -288,7 +297,7 @@ let parametros = {
         /* Helper Functions */
         _addItemToCart: function (name, price, count, codigo) {
             for (var i in this.cart) {
-                if (this.cart[i].name === name) {
+                if (this.cart[i].codigo === codigo) {
                     this.cart[i].count++;
                     this.cart[i].price = price * this.cart[i].count;
                     this.cart[i].codigo = codigo;
@@ -300,9 +309,12 @@ let parametros = {
             this.cart.push(item);
             this._saveCart();
         },
-        _removeItemfromCart: function (name, price, count) {
+        _removeItemfromCart: function (name, price, count, codigo) {
+            console.log('codigo: '+codigo);
             for (var i in this.cart) {
-                if (this.cart[i].name === name) {
+                console.log('codigo: '+this.cart[i].codigo);
+
+                if (this.cart[i].codigo === codigo) {
                     var singleItemCost = Number(price / this.cart[i].count);
                     this.cart[i].count = count;
                     this.cart[i].price = singleItemCost * count;
@@ -329,7 +341,7 @@ let parametros = {
             let precioUnitario = 0;
             let subtotaltem = 0;
             if (cartArray.length <= 0) {
-                output = "<div class='mt-4 display-4 text-primary'><i class='fas fa-lg fa-shopping-cart'></i> </div><p class='text-muted h5'>Su carro de compra esta vacío </p >";
+                output = "<div class='mt-4 display-4 text-primary'><i class='fas fa-lg fa-shopping-cart'></i> </div>";
             }else{
                 for (var i in cartArray) {
                     precioUnitario = (cartArray[i].price) / cartArray[i].count;
@@ -339,7 +351,15 @@ let parametros = {
                     output += `<div class='row cart-each-product'>
                             <div class='col-12 col-md-6 texto_articulo'>`+ cartArray[i].name +`</div>
                             <div class='col-3 offset-4 col-md-2 offset-md-0 align-self-center'>
-                                <input type='number' onfocus='this.select();' class='quantity form-control form-control-sm item-count col-md-10' data-name='` + cartArray[i].name + `' data-price='` + subtotaltem + `' min='0' value=` + cartArray[i].count + ` name='number'>
+                                <input type='number' 
+                                onfocus='this.select();' 
+                                class='quantity form-control form-control-sm item-count col-md-10' 
+                                data-name='` + cartArray[i].name + `' 
+                                data-price='` + subtotaltem + `' 
+                                data-codigo='` + cartArray[i].codigo + `' 
+                                min='0' 
+                                value=` + cartArray[i].count + ` 
+                                name='number'>
                             </div>
                             <div class='col-3 col-md-2 align-self-center texto_articulo'>
                                 ` + newFormatoUnitario + `</i>
@@ -480,7 +500,7 @@ let parametros = {
         console.log(respAsyncDetalles);
         // parametros.nombre_cliente = '';
         // parametros.carrito = '';
-        //ventaRealizada();  
+        ventaRealizada();  
     }else{
         console.log(respAsyncDetalles.error);
         let msg = '';
@@ -493,6 +513,30 @@ let parametros = {
             'error'
         )
     }
+}
+function ventaRealizada(){
+           
+    deleteItemLocalStorage('shoppingCartRegalos'); 
+    parametros = {
+        id_cliente:'',
+        nombre_cliente:'',
+        direccion_cliente:'',
+        telefono_cliente:'',
+        rfc_cliente:'',
+        razon_social_cliente:'',
+        correo_cliente:'',
+        id_usuario:'',
+        carrito:'',
+        metodo_pago:'',
+        importe_pago:0,
+        importe_nota:'',
+        pagos:''
+    }
+    pagos = [];
+    location.reload();
+}
+function deleteItemLocalStorage(key){
+    localStorage.removeItem(key);
 }
 function getCarrito() {
     parametros.carrito = getLocalStorage();        
