@@ -5,7 +5,10 @@ class Reportes extends MY_Controller{
     function __construct()
     {
         parent::__construct();
-        $this->require_min_level(9);        
+        $this->require_min_level(1);  
+        if( !$this->is_role('admin') ){
+            redirect('restringido');
+        }      
     } 
 
     function index(){  

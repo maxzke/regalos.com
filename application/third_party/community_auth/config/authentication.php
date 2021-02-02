@@ -31,8 +31,8 @@ $config['levels_and_roles'] = [
 	// '1' => 'customer',
 	// '6' => 'manager',
 	// '9' => 'admin'
-	'1' => 'cocina',
-	'6' => 'mesero',
+	'1' => 'empleado',
+	'6' => 'gerente',
 	'9' => 'admin'
 ];
 

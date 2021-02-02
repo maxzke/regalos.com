@@ -69,6 +69,11 @@
                                 <i class="fas fa-chart-line fa-lg"></i>
                                 Reportes</a>
                         </li>
+                        <li class="nav-item <?php echo ($pagina_activa == 'usuarios' ? 'active' : '');  ?>">
+                            <a class="nav-link" href="<?php echo base_url('usuarios');  ?>">
+                            <i class="fas fa-users"></i>
+                                Usuarios</a>
+                        </li>
                         <li class="nav-item">
                             <div class="date text-secondary mt-2 ml-5">
                                 <span id="weekDay" class="weekDay"></span>, 
@@ -88,19 +93,18 @@
                     </ul>
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                         
-                        <li class="nav-item dropdown hidden-caret">
-                            <li class="fas fa-user text-success"></li>
-                            <a class="nav-link text-capitalize text-white mr-2" href="#" id="notifDropdown" aria-haspopup="true" aria-expanded="false">                                
-                                <strong><?php echo $auth_username; ?></strong>
-                            </a>
-                        </li>
+                        
                         <li class="nav-item dropdown hidden-caret">
                             <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                                 
-                                <i class="fas fa-power-off fa-lg text-danger"></i>
+                                <li class="nav-item fas fa-user text-success"></li>
+                                <span class="text-uppercase text-white">
+                                    <strong><?php echo $auth_username; ?></strong>
+                                </span>
+                                <i class="fas fa-sort-down text-white"></i>
                                 
                             </a>
-                            <ul class="dropdown-menu dropdown-user animated fadeIn bg-warning">
+                            <ul class="dropdown-menu dropdown-user animated fadeIn bg-danger">
                                 <div class="dropdown-user-scroll scrollbar-outer">                                    
                                     <li>                                       
                                         <a class="dropdown-item" href="<?php echo base_url('login/logout') ?>">

@@ -83,6 +83,9 @@ class Producto extends MY_Controller{
      */
     function index()
     {
+        if( !$this->is_role('admin') ){
+            redirect('restringido');
+        }
         $data['productos'] = $this->Producto_model->get_all_productos();
         //$data['pagina_activa'] = "venta,productos,reportes"
         $data['pagina_activa'] = "productos";
@@ -98,6 +101,9 @@ class Producto extends MY_Controller{
      */
     function add()
     {   
+        if( !$this->is_role('admin') ){
+            redirect('restringido');
+        }
         $this->load->library('form_validation');
 
         $this->form_validation->set_message('required', '{field} es requerido');
@@ -149,6 +155,9 @@ class Producto extends MY_Controller{
      */
     function edit($id)
     {   
+        if( !$this->is_role('admin') ){
+            redirect('restringido');
+        }
         // check if the producto exists before trying to edit it
         $data['producto'] = $this->Producto_model->get_producto($id);
         
@@ -205,6 +214,9 @@ class Producto extends MY_Controller{
      */
     function remove($id)
     {
+        if( !$this->is_role('admin') ){
+            redirect('restringido');
+        }
         $producto = $this->Producto_model->get_producto($id);
 
         // check if the producto exists before trying to delete it

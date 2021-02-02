@@ -56,3 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route[LOGIN_PAGE] = 'login/login';
 
 $route['venta'] = 'PuntoDeVenta';
+$route['usuarios'] = 'User';

@@ -18,7 +18,7 @@ html,body{
 background-image: url('<?php echo base_url('assets/img/login-background.jpg')?>');
 background-size: cover;
 background-repeat: no-repeat;
-width: 100%;
+height: 100%;
 font-family: 'Numans', sans-serif;
 }
 

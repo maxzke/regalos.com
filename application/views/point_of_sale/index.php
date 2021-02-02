@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-2 py-1">
-            <strong>VENTA DE PRODUCTOS</strong>
+            <h4><strong>VENTA DE PRODUCTOS</strong></h4>
     </div>
     <div class="col-md-2">
         <input type="text" class="form-control form-control-sm sc-add-to-cart-code" name="inputBuscarPorCodigo" id="inputBuscarPorCodigo" placeholder="Código"

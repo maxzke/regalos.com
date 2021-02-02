@@ -10,7 +10,7 @@ class PuntoDeVenta extends MY_Controller{
     } 
 
     function index(){  
-        if( $this->is_role('admin') or $this->is_role('mesero') ){            
+        if( $this->is_role('admin') or $this->is_role('empleado') ){            
             // $this->load->model('Seccion_model');        
             // $this->load->model('Mesa_model');
             // $data['mesa_ocupada'] = $this->Mesa_model->get_mesa_ocupada();
@@ -23,7 +23,7 @@ class PuntoDeVenta extends MY_Controller{
             $data['_view'] = 'point_of_sale/index';
             $this->load->view('layouts/main',$data);
         }else{
-            redirect('Cocina');
+            redirect('venta');
         }
     }
 

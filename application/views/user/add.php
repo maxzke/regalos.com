@@ -1,15 +1,7 @@
-<div class="main-panel">
-    <div class="content">
+
         <div class="page-inner">
             <div class="page-header">
                 <h4 class="page-title">Agregar Nuevo Usuario</h4>
-                <ul class="breadcrumbs">
-                    <li class="nav-home">
-                        <a href="<?php echo base_url('user'); ?>">
-                            <i class="flaticon-home"></i> Volver
-                        </a>
-                    </li>
-                </ul>
             </div>
             <div class="row">
 				<div class="col-md-12">
@@ -25,14 +17,14 @@
 								data-toggle="tooltip" 
 								data-placement="right" 
 								title="Seleccionar el tipo de usuario que se desea registrar">
-								Nivel</label>
+								PERMISOS</label>
 								<div class="col-md-12">
 									<select name="auth_level" class="form-control">
 										<option value="">Seleccionar</option>
 										<?php 
 										$auth_level_values = array(
-											'1'=>'Cocina',
-											'6'=>'Mesero',
+											'1'=>'Empleado',
+											//'6'=>'Mesero',
 											'9'=>'Administrador',
 										);
 
@@ -51,7 +43,7 @@
 								<div class="col-md-12">
 									<input type="text" name="username" 
 									value="<?php echo $this->input->post('username'); ?>" 
-									class="form-control" id="username" 
+									class="form-control text-uppercase" id="username" 
 									placeholder="Máximo 12 caracteres"/>
 								</div>
 							</div>
@@ -70,6 +62,9 @@
 							
 							<div class="form-group">
 								<div class="col-sm-offset-4 col-sm-8">
+								<a href="<?php echo base_url('user'); ?>" class="btn btn-warning">
+                            <i class="flaticon-home"></i> Volver
+                        </a>
 									<button type="submit" class="btn btn-success">Guardar</button>
 								</div>
 							</div>
@@ -107,5 +102,3 @@
 				</div>
             </div>
         </div>
-    </div>
-</div>

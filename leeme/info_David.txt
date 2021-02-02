@@ -1,8 +1,15 @@
+***********************************************
+	Community Auth
+***********************************************
+
+
 The username cannot exceed 12 characters in length.
 
+\application\third_party\community_auth\config\authentication.php
+
 'auth_level' => '9' ******Administrado
-'auth_level' => '6' ******Mesero
-'auth_level' => '1' ******Cocina
+'auth_level' => '6' ******gerente
+'auth_level' => '1' ******emlpeado
 
 //////////////////////////
 user****pasword
@@ -35,4 +42,26 @@ TABLA CLIENTES EL ID=1
 id=1 le pertenece por default a publico general, 
 registrar en la tabla CLIENTES con id=1 como publico general siempre
 punto_de_venta.js tiene por default valor=1 cliente default cuando no se selecciona ningun cliente
+
+***********************************************
+	Variables Accessible in views
+***********************************************
+
+// The logged in user's user ID
+$auth_user_id
+ 
+// The logged in user's username
+$auth_username
+ 
+// The logged in user's account level by number
+$auth_level
+ 
+// The logged in user's account level by name
+$auth_role
+ 
+// The logged in user's email address
+$auth_email
+ 
+// Any ACL permissions applied to the user
+$acl
 
