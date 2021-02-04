@@ -1,4 +1,6 @@
 
+
+
 $('#content-table').DataTable(
 	{
 		//     'dom'  : 'Bfrtip',
@@ -65,8 +67,19 @@ let meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio",
 let f=new Date();
 let fecha_inventario = f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear();
 
-$('#productos-table').DataTable(
-	{
+setTimeout(() => {
+	mostrar();
+}, 5000);
+
+function  mostrar() {
+	$('#cargando').remove();
+}
+// setTimeout(function(){ 
+// 	alert("Hello"); 
+// }, 3000);
+
+$('#productos-table').DataTable({
+	//"processing": true,
 		'dom'  : 'Bfrtip',
     buttons: [        
         {
@@ -93,9 +106,9 @@ $('#productos-table').DataTable(
         }
        
 	],     
-		"scrollY": 250,
+		//"scrollY": 250,
 		"responsive": true,
-		'paging': false,
+		'paging': true,
 		'lengthChange': false,
 		'searching': true,
 		'ordering': true,
@@ -310,3 +323,7 @@ function insertarCambio(importe) {
         parametros.importe_pago = importe;
     }       
 }
+
+
+
+

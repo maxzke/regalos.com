@@ -136,7 +136,7 @@
     <!--   Core JS Files   -->
     <script src="<?php echo base_url(); ?>assets/js/core/jquery.3.2.1.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/core/popper.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/core/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/core/bootstrap_4.3..min.js"></script>
 
     <!-- jQuery UI -->
     <script src="<?php echo base_url(); ?>assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>

@@ -65,3 +65,23 @@ $auth_email
 // Any ACL permissions applied to the user
 $acl
 
+***********************************************
+Variables Accessible in Controller
+***********************************************
+// The logged in user's user ID
+$this->auth_user_id
+ 
+// The logged in user's username
+$this->auth_username
+ 
+// The logged in user's account level by number
+$this->auth_level
+ 
+// The logged in user's account level by name
+$this->auth_role
+ 
+// The logged in user's email address
+$this->auth_email
+ 
+// Any ACL permissions applied to the user
+$this->acl

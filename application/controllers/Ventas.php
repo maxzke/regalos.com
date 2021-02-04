@@ -89,7 +89,7 @@ class Ventas extends REST_Controller {
 
             if ($band == true) {
                 $this->id_cliente = $parametros['id_cliente'];
-                $this->id_usuario = $parametros['id_usuario'];
+                $this->id_usuario = $this->auth_username;
                 $this->id_mesa = $parametros['id_mesa'];
                 $this->carrito = $parametros['carrito'];
                 $this->pagos = $parametros['pagos'];
@@ -108,7 +108,7 @@ class Ventas extends REST_Controller {
                 /**
                  * MANDA IMPRIMIR TICKET
                  */
-                $this->printTicket($this->importeNota,$this->netoPagado,$this->carrito);
+                //$this->printTicket($this->importeNota,$this->netoPagado,$this->carrito);
 
                 $respuesta = array(
                         'success' => true,

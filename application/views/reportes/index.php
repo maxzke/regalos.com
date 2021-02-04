@@ -13,7 +13,7 @@
 				</div>
 				<div class="col-md-12">
 				<!-- CONTENIDO -->
-					<table id="content-table-reporte" class="table table-sm table-striped table-bordered">
+					<table id="content-table-reporte" class="table table-sm table-hover table-bordered bg-white">
                         <thead>
 							<tr>
 								<th>PRODUCTO</th>

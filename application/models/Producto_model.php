@@ -29,10 +29,21 @@ class Producto_model extends CI_Model
     }
         
     /*
+     * Get productos disponibles stock > 0
+     */
+    function get_productos_disponibles()
+    {
+        $this->db->order_by('id', 'desc');
+        $this->db->where('stock >', 0);
+        return $this->db->get('productos')->result_array();
+    }
+
+    /*
      * Get all productos
      */
     function get_all_productos()
     {
+        $this->db->select('id,codigo,nombre,stock,precio,costo');
         $this->db->order_by('id', 'desc');
         return $this->db->get('productos')->result_array();
     }

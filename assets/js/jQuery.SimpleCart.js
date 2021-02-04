@@ -508,8 +508,8 @@ let parametros = {
             msg += element.msg+'<br>';
         });
         Swal.fire(
-            'Error',
             msg,
+            'Intente de nuevo...',
             'error'
         )
     }

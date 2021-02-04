@@ -19,7 +19,7 @@ class PuntoDeVenta extends MY_Controller{
             // $data['alertas'] = $this->check_min_stock();
             //$data['pagina_activa'] = "venta,productos,reportes"
             $data['pagina_activa'] = "venta";
-            $data['productos'] = $this->Producto_model->get_all_productos();
+            $data['productos'] = $this->Producto_model->get_productos_disponibles();
             $data['_view'] = 'point_of_sale/index';
             $this->load->view('layouts/main',$data);
         }else{

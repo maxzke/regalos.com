@@ -12,6 +12,12 @@ class Producto extends MY_Controller{
         $this->load->model('Producto_model');
     } 
 
+    public function get_all(){
+        $data['productos'] = $this->Producto_model->get_all_productos();
+        $data['success'] = TRUE;
+        echo json_encode($data);
+    }
+
     public function getProductoByCodigo(){
         $cod = $this->input->post('codigo');
         $response['producto'] = $this->Producto_model->get_producto_codigo($cod);

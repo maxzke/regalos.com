@@ -75,7 +75,7 @@
                     <input 
                         class="form-control inputPago" 
                         type="text" 
-                        onkeyup="getInputImporte()" 
+                        onkeyup="getInputImporte();" 
                         onclick="this.select()" 
                         value="0" 
                         data-metodo="1">
@@ -124,7 +124,9 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-secondary">
-        <h5 class="modal-title" id="modalBuscarProductoLabel"><span class="text-primary">Buscar Producto</span></h5>
+        <h5 class="modal-title text-primary" id="modalBuscarProductoLabel">
+            <span class="text-primary"> <strong>Buscar Producto</strong>
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
