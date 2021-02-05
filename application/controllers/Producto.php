@@ -84,15 +84,59 @@ class Producto extends MY_Controller{
         //echo json_encode($response);
     }
 
+    
+    // function index()
+    // {
+    //     if( !$this->is_role('admin') ){
+    //         redirect('restringido');
+    //     }
+    //     /**
+    //      * PAGINACION
+    //      */
+    //     $params['limit'] = 10; 
+    //     $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+    //     $config = $this->config->item('pagination');
+    //     $config['base_url'] = site_url('producto/index?');
+    //     $config['total_rows'] = $this->Producto_model->get_all_count();
+    //     $config['per_page'] = 10;
+    //     $this->pagination->initialize($config);
+    //     $data['productos'] = $this->Producto_model->get_all_productos_paginados($params);
+    //     /**
+    //      * PAGINACION FIN
+    //      */
+    //     $data['productos'] = $this->Producto_model->get_all_productos();
+    //     //$data['pagina_activa'] = "venta,productos,reportes"
+    //     $data['pagina_activa'] = "productos";
+    //     $this->load->model('Categoria_model');
+    //     $data['categorias'] = $this->Categoria_model->get_all_categorias();
+    //     $data['alertas'] = $this->check_min_stock();
+
+    //     $data['_view'] = 'producto/index';
+    //     $this->load->view('layouts/main',$data);
+    // }
+
     /*
      * Listing of productos
      */
-    function index()
-    {
+    function paginado(){
         if( !$this->is_role('admin') ){
             redirect('restringido');
         }
-        $data['productos'] = $this->Producto_model->get_all_productos();
+        /**
+         * PAGINACION
+         */
+        $params['limit'] = 10; 
+        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+        $config = $this->config->item('pagination');
+        $config['base_url'] = site_url('producto/paginado?');
+        $config['total_rows'] = $this->Producto_model->get_all_count();
+        $config['per_page'] = 10;
+        $this->pagination->initialize($config);
+        $data['productos'] = $this->Producto_model->get_all_productos_paginados($params);
+        /**
+         * PAGINACION FIN
+         */
+        
         //$data['pagina_activa'] = "venta,productos,reportes"
         $data['pagina_activa'] = "productos";
         $this->load->model('Categoria_model');
@@ -100,6 +144,19 @@ class Producto extends MY_Controller{
         $data['alertas'] = $this->check_min_stock();
         $data['_view'] = 'producto/index';
         $this->load->view('layouts/main',$data);
+
+
+    }
+    
+    /**
+     * DEVUELVE LAS CONSIDENCIAS
+     */
+    function consulta(){
+        $parametro = $this->input->post('busqueda');
+        $data['response'] = $this->Producto_model->buscador($parametro);
+        $data['success'] = TRUE;
+        $data['consulta'] = $parametro;
+        echo json_encode($data);
     }
 
     /*

@@ -57,3 +57,4 @@ $route[LOGIN_PAGE] = 'login/login';
 
 $route['venta'] = 'PuntoDeVenta';
 $route['usuarios'] = 'User';
+$route['productos'] = 'Producto/paginado';

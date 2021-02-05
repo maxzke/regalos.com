@@ -2,20 +2,14 @@
         <div class="page-inner">
             <div class="page-header">
 				<div class="row">
-					<div class="col-md-3">
-						<h4 class="page-title">Listado de Productos</h4>
-						<input id="ruta" type="hidden" value="<?php echo base_url(); ?>">
+					<div class="col-md-4">
+						<h4 class="page-title">Listado de Productos Disponibles</h4>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-5">
 						<a href="<?php echo site_url('producto/add'); ?>" class="btn btn-sm btn-success">Agregar Nuevo Producto</a>
 					</div>
-					<div class="col-md-6">				
-						<div class="form-group row">
-							<label for="inputPassword" class="col-md-2 text-right">Buscar:</label>
-							<div class="col-md-10">
-							<input type="text" class="form-control form-control-sm" id="caja_busqueda">
-							</div>
-						</div>
+					<div class="col-md-3">				
+						
 					</div>
 				</div>
 				<?php if ($this->session->flashdata('item')) { ?>
@@ -30,24 +24,20 @@
             <div class="row">
 				<div class="col-md-12">
 
-					<!-- TABLA CONSULTA -->
-					<table id="tableConsulta" class="table table-sm table-hover table-bordered bg-white" style="display:none">
-							<thead>
-								<tr>
-									<th>Código</th>
-									<th>Producto</th>
-									<th>Stock</th>
-									<th>Precio</th>
-									<th>Opciones</th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
-					<!-- FIN TABLA CONSULTA -->
-
+					<div id="cargando" class="progress">
+						<div 
+						class="progress-bar progress-bar-striped progress-bar-animated" 
+						role="progressbar" 
+						aria-valuenow="15" 
+						aria-valuemin="0" 
+						aria-valuemax="100" 
+						style="width: 100%;">
+						Por Favor Espere. Cargando Productos . . .
+						</div>
+					</div>
 				<!-- CONTENIDO -->
-						<table id="tablePaginado" class="table table-sm table-hover table-bordered bg-white">
+					<div id="mostrartable">
+						<table id="productos-table" class="table table-sm table-hover table-bordered bg-white">
 							<thead>
 								<tr>
 									<th>Código</th>
@@ -65,7 +55,7 @@
 									<td class="text-center">
 									<?php 
 										if ( $p['stock']==0 ): ?>
-											<span class="badge badge-pill badge-danger">agotado</span>
+											<span class="badge badge-danger">agotado</span>
 										<?php else: 
 											echo $p['stock'];
 										endif ?>
@@ -83,10 +73,7 @@
 								<?php } ?>
 							</tbody>
 						</table>
-						<div>
-							<?php echo $this->pagination->create_links(); ?>    
-						</div>
-						
+					</div>
 
             	<!-- /CONTENIDO -->
 				</div>

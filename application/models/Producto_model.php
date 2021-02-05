@@ -10,7 +10,29 @@ class Producto_model extends CI_Model
     {
         parent::__construct();
     }
-    
+    /**
+     * PAGINACION
+     */
+    function get_all_count()
+    {
+        $this->db->from('productos');
+        return $this->db->count_all_results();
+    }
+    /*
+     * Get all entrada_stock_procesados
+     */
+    function get_all_productos_paginados($params = array())
+    {
+        $this->db->order_by('id', 'desc');
+        if(isset($params) && !empty($params))
+        {
+            $this->db->limit($params['limit'], $params['offset']);
+        }
+        return $this->db->get('productos')->result_array();
+    }
+    /**
+     * / PAGINACION
+     */
     /*
      * Get producto by id
      */
@@ -107,5 +129,14 @@ class Producto_model extends CI_Model
         $query = $this->db->query($sql);
         $items = $query->result_array();
         return $items;
+    }
+
+    function buscador($termino){
+        //$query = "SELECT * FROM productos WHERE codigo LIKE '%$q%' OR Name LIKE '%$q%' OR ClubName LIKE '%$q%' OR Rtg_Nat LIKE '%$q%' OR Title LIKE '$q' ";
+        $this->db->like('codigo', $termino);
+        $this->db->or_like('nombre', $termino);
+        $this->db->limit(10);
+        return $this->db->get('productos')->result_array();
+
     }
 }

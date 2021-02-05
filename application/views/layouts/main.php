@@ -60,7 +60,7 @@
                             </a>
                         </li>
                         <li class="nav-item <?php echo ($pagina_activa == 'productos' ? 'active' : '');  ?>">
-                            <a class="nav-link" href="<?php echo base_url('producto');  ?>">
+                            <a class="nav-link" href="<?php echo base_url('productos');  ?>">
                                 <i class="fas fa-box-open fa-lg"></i>
                                 Productos</a>
                         </li>
