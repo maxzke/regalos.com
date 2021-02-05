@@ -50,6 +50,7 @@
 						<table id="tablePaginado" class="table table-sm table-hover table-bordered bg-white">
 							<thead>
 								<tr>
+									<th>#</th>
 									<th>Código</th>
 									<th>Producto</th>
 									<th>Stock</th>
@@ -60,6 +61,7 @@
 								<tbody>
 								<?php foreach($productos as $p){ ?>
 								<tr>
+									<td><?php echo $p['id']; ?></td>
 									<td><?php echo $p['codigo']; ?></td>
 									<td><?php echo $p['nombre']; ?></td>
 									<td class="text-center">
@@ -86,6 +88,7 @@
 						<div>
 							<?php echo $this->pagination->create_links(); ?>    
 						</div>
+						<span class="text-mute">Mostrando del <?php echo $total_rows_de; ?> al <?php echo $total_rows_al; ?> de un total de <?php echo $total_rows; ?> registros.</span>
 						
 
             	<!-- /CONTENIDO -->

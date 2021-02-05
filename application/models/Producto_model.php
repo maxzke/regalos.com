@@ -23,7 +23,7 @@ class Producto_model extends CI_Model
      */
     function get_all_productos_paginados($params = array())
     {
-        $this->db->order_by('id', 'desc');
+        $this->db->order_by('id', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

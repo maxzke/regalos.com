@@ -7,17 +7,18 @@ class PuntoDeVenta extends MY_Controller{
         parent::__construct();
         $this->require_min_level(1);        
         $this->load->model('Producto_model');
+        $this->load->model('Entrada_efectivo_caja_model');
+            date_default_timezone_set('America/Mexico_City');
+            $now = date('Y-m-d');
+            $data['entrada'] = $this->Entrada_efectivo_caja_model->getCaja($now);
+            if (!$data['entrada']) {
+                redirect('caja');
+            }
     } 
 
+
     function index(){  
-        if( $this->is_role('admin') or $this->is_role('empleado') ){            
-            // $this->load->model('Seccion_model');        
-            // $this->load->model('Mesa_model');
-            // $data['mesa_ocupada'] = $this->Mesa_model->get_mesa_ocupada();
-            // $data['seccion'] = $this->Seccion_model->get_all_seccion();
-            // $data['mesas'] = $this->Mesa_model->get_all_mesas(); 
-            // $data['alertas'] = $this->check_min_stock();
-            //$data['pagina_activa'] = "venta,productos,reportes"
+        if( $this->is_role('admin') or $this->is_role('empleado') ){     
             $data['pagina_activa'] = "venta";
             $data['productos'] = $this->Producto_model->get_productos_disponibles();
             $data['_view'] = 'point_of_sale/index';

@@ -59,6 +59,13 @@
                             <span class="sr-only">(current)</span>
                             </a>
                         </li>
+                        <li class="nav-item <?php echo ($pagina_activa == 'historial_ventas' ? 'active' : '');  ?>">
+                            <a class="nav-link" href="<?php echo base_url('historial_ventas');  ?>">
+                                <i class="fas fa-history fa-lg"></i>
+                                Historial Ventas
+                            <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
                         <li class="nav-item <?php echo ($pagina_activa == 'productos' ? 'active' : '');  ?>">
                             <a class="nav-link" href="<?php echo base_url('productos');  ?>">
                                 <i class="fas fa-box-open fa-lg"></i>

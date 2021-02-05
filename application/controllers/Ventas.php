@@ -571,6 +571,18 @@ class Ventas extends REST_Controller {
     *   FIN Funcion IMPRIMIR TICKET
     */
 
+    /*
+    *   IMPRIMIR TICKET CERRAR TURNO
+    */
+public function print_ticket_close_turno(){
+    
+}
+
+
+     /*
+    *   FIN Funcion IMPRIMIR TICKET CERRAR TURNO
+    */
+
 
     /**
      * CHECA MINIMO STOCK

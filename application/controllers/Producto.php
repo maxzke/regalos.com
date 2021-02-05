@@ -10,6 +10,7 @@ class Producto extends MY_Controller{
         parent::__construct();
         $this->require_min_level(1);
         $this->load->model('Producto_model');
+        
     } 
 
     public function get_all(){
@@ -142,6 +143,9 @@ class Producto extends MY_Controller{
         $this->load->model('Categoria_model');
         $data['categorias'] = $this->Categoria_model->get_all_categorias();
         $data['alertas'] = $this->check_min_stock();
+        $data['total_rows_de'] = $params['offset']+1;
+        $data['total_rows_al'] = $params['offset']+$config['per_page'];
+        $data['total_rows'] = $this->Producto_model->get_all_count();
         $data['_view'] = 'producto/index';
         $this->load->view('layouts/main',$data);
 

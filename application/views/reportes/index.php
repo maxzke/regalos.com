@@ -30,16 +30,16 @@
 								<td><?php echo $p['producto']; ?></td>
 								<td><?php echo $p['cantidad']; ?></td>
 								<td><?php echo number_format($p['precio'],2,".","," ); ?></td>
-								<td><?php echo number_format($p['total'],2,".","," ); $suma += $p['total']; ?></td>
+								<td class="text-right"><?php echo number_format($p['total'],2,".","," ); $suma += $p['total']; ?></td>
 							</tr>
 							<?php } ?>
 					</tbody>
-					<tfoot class="bg-success">					
+					<tfoot>
 						<tr>
-							<th class="text-center">TOTAL</th>
-							<th></th>
-							<th></th>
-							<th class="text-left"><?php echo number_format($suma,2,".","," ); ?></th>
+							<th class="bg-secondary"></th>
+							<th class="bg-secondary"></th>
+							<th class="text-right">Total</th>							
+							<th class="text-right">$ <?php echo number_format($suma,2,".","," ); ?></th>
 						</tr>
 					</tfoot>
 				</table>

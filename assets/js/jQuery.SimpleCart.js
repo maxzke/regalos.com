@@ -741,7 +741,7 @@ function pintaTablaConsulta(productos){
                             <td>
                                 <a onclick="abastecer('${elemento.id}','${elemento.nombre}','http://localhost/regalos.com/producto/abastecer')" type="button" class="btn btn-outline-success btn-xs btnAbastecer" data-toggle="tooltip" data-placement="left" title="Re-abastecer">
                                     <i class="fas fa-plus"></i></button>
-                                <a href="http://localhost/regalos.com/producto/edit/${elemento.id}); " class="btn btn-outline-info btn-xs ml-1" data-toggle="tooltip" data-placement="left" title="Editar">
+                                <a href="http://localhost/regalos.com/producto/edit/${elemento.id}" class="btn btn-outline-info btn-xs ml-1" data-toggle="tooltip" data-placement="left" title="Editar">
                                 <li class="fas fa-edit"></li></a> 
                                 <a href="http://localhost/regalos.com/producto/remove/${elemento.id}" class="btn btn-outline-danger btn-xs" data-toggle="tooltip" data-placement="left" title="Eliminar">
                                 <li class="fas fa-times"></li></a>
