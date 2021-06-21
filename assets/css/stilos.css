@@ -11,3 +11,7 @@
     border: none;
     overflow-y: scroll;
 }
+
+body > table > tbody{
+    font-size: 13px;
+}

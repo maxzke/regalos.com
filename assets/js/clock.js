@@ -4,7 +4,7 @@ var udateTime = function() {
         minutes = currentDate.getMinutes(), 
         seconds = currentDate.getSeconds(),
         weekDay = currentDate.getDay(), 
-        day = currentDate.getDay(), 
+        day = currentDate.getDate(), 
         month = currentDate.getMonth(), 
         year = currentDate.getFullYear();
  

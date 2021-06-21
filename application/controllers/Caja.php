@@ -6,6 +6,7 @@ class Caja extends MY_Controller{
     {
         parent::__construct();
         $this->require_min_level(1);
+        $this->load->model('Entrada_efectivo_caja_model');
     }
 
 
@@ -20,7 +21,7 @@ class Caja extends MY_Controller{
     }
 
     function get_today(){
-        $this->load->model('Entrada_efectivo_caja_model');
+        
         date_default_timezone_set('America/Mexico_City');
         $now = date('Y-m-d');
         $data['entrada'] = $this->Entrada_efectivo_caja_model->getCaja($now);

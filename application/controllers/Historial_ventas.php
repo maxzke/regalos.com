@@ -29,9 +29,22 @@ class Historial_ventas extends REST_Controller {
     public function index_get(){
         $data['pagina_activa'] = "historial_ventas";        
         $data['ventas'] = $this->Historial_ventas_model->get_all();
+        date_default_timezone_set('America/Mexico_City');
+        $data['fecha'] = date('d-m-Y');
         $data['_view'] = 'historial/index';
         $this->load->view('layouts/main',$data);
         //echo json_encode($data);
+    }
+
+    public function por_fecha_post(){
+        $fecha = $this->input->post('fecha');
+        $data['pagina_activa'] = "historial_ventas";        
+        $data['ventas'] = $this->Historial_ventas_model->get_all($fecha);
+        date_default_timezone_set('America/Mexico_City');
+        $data['fecha'] = date('d-m-Y');
+        $data['_view'] = 'historial/index';
+        $this->load->view('layouts/main',$data);
+        //echo $fecha;
     }
 
 

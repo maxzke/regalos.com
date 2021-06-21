@@ -605,6 +605,20 @@ public function print_ticket_close_turno(){
         return $response;        
         //echo json_encode($response);
     }
+
+    public function obtiene_detalle_venta_by_id_post(){
+        $id = $this->input->post('id');
+        $data['ticket'] = $this->ventas_model->getTicket($id);
+        $data['total_ticket'] = $this->ventas_model->getTotalTicket($id);
+        $data['abonos'] = $this->ventas_model->getAbonosByIdVenta($id);
+        $respuesta = array(
+            'success' => TRUE,
+            'ticket' => $data['ticket'],
+            'total_ticket' =>$data['total_ticket'][0]['importe'],
+            'abonos'=>$data['abonos'][0]['importe']
+        );
+        $this->response($respuesta,200);
+    }
     
     
 

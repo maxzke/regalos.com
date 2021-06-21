@@ -1,5 +1,69 @@
 
 
+$('#table-detalles-ticket').DataTable(
+	{
+		//     'dom'  : 'Bfrtip',
+		//     buttons: [
+		//   {
+		//       extend: 'print',
+		//         text: 'Imprimir'          
+		//   },
+		//   {
+		//     extend: 'pdf',
+		//     text: 'PDF'
+		//   },
+		//   {
+		//     extend: 'excel',
+		//     text: 'Excel'
+		//   }
+
+		// ],     
+		"scrollY": 200,
+		"responsive": true,
+		'paging': false,
+		'lengthChange': false,
+		'searching': false,
+		'ordering': false,
+		'info': false,
+		'autoWidth': false,
+		// 'columns': [
+		//             { "width": "10%" },
+		//             { "width": "30%" },
+		//             { "width": "10%" },
+		//             { "width": "10%" },
+		//             { "width": "10%" },
+		//             { "width": "10%" },
+		//             { "width": "10%" }
+		//           ],
+		/*Cambiando a espanol el lenguaje*/
+		'language': {
+
+			"sProcessing": "Procesando...",
+			"sLengthMenu": "Mostrar _MENU_ registros",
+			"sZeroRecords": "No se encontraron resultados",
+			"sEmptyTable": "Ningun producto agregado",
+			"sInfo": "Mostrando del _START_ al _END_ de un total de _TOTAL_ registros",
+			"sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 registros",
+			"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+			"sInfoPostFix": "",
+			"sSearch": "Buscar:",
+			"sUrl": "",
+			"sInfoThousands": ",",
+			"sLoadingRecords": "Cargando...",
+			"oPaginate": {
+				"sFirst": "Primero",
+				"sLast": "Último",
+				"sNext": "Siguiente",
+				"sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+    }
+});
+
+
 $('#table-historial-folios').DataTable(
 	{
 		//     'dom'  : 'Bfrtip',
@@ -62,6 +126,77 @@ $('#table-historial-folios').DataTable(
         }
     }
 });
+
+function show_detail(folio){	
+	let url = $('#ruta').val();
+	$.ajax({
+		type: 'ajax',
+		method: 'post',
+		url: url+'ventas/obtiene_detalle_venta_by_id',
+		data: { id:folio  },
+		async: true,
+		dataType:'json',
+		success: function(response){
+			if (response.success) {
+				console.log(response); 
+				console.log(response.total_ticket); 
+				console.log(response.abonos); 
+				pinta_detalles(response.ticket,response.total_ticket,response.abonos);
+			}else{
+			Swal.fire(
+				'Ups !',
+				'Codigo no encontrado',
+				'error'
+				)
+			}
+		},
+		error: function(response){              
+			alert('No se pudieron eliminar');
+			console.log(response);
+		}
+
+	});
+}
+
+function pinta_detalles(detalles,total,pagado){
+	let table = document.querySelector('#table-detalles-ticket tbody');
+	let table_footer = document.querySelector('#table-detalles-ticket_wrapper tfoot');
+	let fila = "";
+	detalles.forEach(elemento => {
+		fila += `<tr>
+					<td>${elemento.cantidad}</td>
+					<td style="font-size: 10px;">${elemento.producto}</td>
+					<td class="text-right">$${elemento.precio}</td>
+					<td class="text-right">$${elemento.importe}</td>
+					<td>
+						<a class="btn btn-xs btn-warning"
+							data-toggle="tooltip"
+							data-placement="top"
+							title="Devolver">
+							<i class="fas fa-reply"></i>
+						</a>
+					</td>
+				</tr>`;
+	});
+	table.innerHTML = fila;
+	let pie = `<tr>
+			<td></td>
+			<td></td>
+			<td>Total</td>
+			<td class="text-right">${total}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td>Pagó Con</td>
+			<td class="text-right">${pagado}</td>
+			<td></td>
+		</tr>`;
+	table_footer.innerHTML = pie;
+	//$('#table-detalles-ticket_wrapper tfoot').html(pie);
+}
+
 $('#content-table').DataTable(
 	{
 		//     'dom'  : 'Bfrtip',
@@ -127,7 +262,6 @@ $('#content-table').DataTable(
 let meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 let f=new Date();
 let fecha_inventario = f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear();
-
 setTimeout(() => {
 	mostrar();
 }, 5000);

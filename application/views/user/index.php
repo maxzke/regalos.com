@@ -45,7 +45,7 @@
 								<td><?php 
 										switch ($u['auth_level']) {
 											case '1':
-												echo "Cocina";
+												echo "Empleado";
 												break;
 											case '6':
 												echo "Mesero";
