@@ -74,7 +74,7 @@
 									</td>
 									<td class="text-right"><?php echo $p['precio']; ?></td>
 									<td>
-										<a onclick="abastecer('<?php echo $p['id'] ?>','<?php echo $p['nombre'] ?>','<?php echo base_url('producto/abastecer'); ?>')" type="button" class="btn btn-outline-success btn-xs btnAbastecer" data-toggle="tooltip" data-placement="left" title="Re-abastecer">
+										<a onclick="abastecer('<?php echo $p['id'] ?>','<?php echo $p['nombre'] ?>','<?php echo site_url('producto/abastecer'); ?>')" type="button" class="btn btn-outline-success btn-xs btnAbastecer" data-toggle="tooltip" data-placement="left" title="Re-abastecer">
 											<i class="fas fa-plus"></i></button>
 										<a href="<?php echo site_url('producto/edit/'.$p['id']); ?>" class="btn btn-outline-info btn-xs ml-1" data-toggle="tooltip" data-placement="left" title="Editar">
 										<li class="fas fa-edit"></li></a> 

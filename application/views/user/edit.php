@@ -43,7 +43,7 @@
 	
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">
-		<a href="<?php echo base_url('user'); ?>" class="btn btn-warning">
+		<a href="<?php echo site_url('user'); ?>" class="btn btn-warning">
                             <i class="flaticon-home"></i> Volver
                         </a>
 			<button type="submit" class="btn btn-success">Guardar</button>

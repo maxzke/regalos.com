@@ -201,7 +201,7 @@ class Producto extends MY_Controller{
                     );
                     
                     $producto_id = $this->Producto_model->add_producto($params);
-                    redirect('producto/index');
+                    redirect('productos');
                 
         }
         else
@@ -259,7 +259,7 @@ class Producto extends MY_Controller{
                 );
 
                 $this->Producto_model->update_producto($id,$params);            
-                redirect('producto/index');
+                redirect('productos');
             }
             else
             {
@@ -290,7 +290,7 @@ class Producto extends MY_Controller{
         if(isset($producto['id']))
         {
             $this->Producto_model->delete_producto($id);
-            redirect('producto/index');
+            redirect('productos');
         }
         else
             show_error('The producto you are trying to delete does not exist.');

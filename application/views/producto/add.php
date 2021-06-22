@@ -64,7 +64,7 @@
 						<div class="row">
 							<div class="col-md-8">
 								<button type="submit" class="btn btn-success">Guardar</button>
-								<a href="<?php echo base_url('producto'); ?>" class="btn btn-warning">
+								<a href="<?php echo site_url('producto'); ?>" class="btn btn-warning">
 									<i class="flaticon-home"></i> Volver
 								</a>
 							</div>
