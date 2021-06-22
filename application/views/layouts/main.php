@@ -59,6 +59,7 @@
                             <span class="sr-only">(current)</span>
                             </a>
                         </li>
+                        <?php if ($auth_level==9) { ?>                        
                         <li class="nav-item <?php echo ($pagina_activa == 'historial_ventas' ? 'active' : '');  ?>">
                             <a class="nav-link" href="<?php echo site_url('historial_ventas');  ?>">
                                 <i class="fas fa-history fa-lg"></i>
@@ -81,7 +82,7 @@
                             <i class="fas fa-users"></i>
                                 Usuarios</a>
                         </li>
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <div class="date text-secondary mt-2 ml-5">
                                 <span id="weekDay" class="weekDay"></span>, 
                                 <span id="day" class="day"></span> de
@@ -91,12 +92,13 @@
                                 <span id="minutes" class="minutes"></span> :
                                 <span id="seconds" class="seconds"></span>
                             </div>
-                            <!-- <div class="clock text-secondary">
+                             <div class="clock text-secondary">
                                 <span id="hours" class="hours"></span> :
                                 <span id="minutes" class="minutes"></span> :
                                 <span id="seconds" class="seconds"></span>
                             </div> -->
                         </li>
+                        <?php } ?>
                     </ul>
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                         

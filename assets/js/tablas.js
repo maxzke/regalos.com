@@ -441,7 +441,7 @@ $('.content-table-reporte').DataTable({
         {
 		    extend: 'pdfHtml5',
 			footer: true,
-			text: 'PDF',
+			text: 'Esportar a PDF',
 			className: 'btn btn-sm btn-primary', 
 			init: function(api, node, config) {
 				$(node).removeClass('btn-secondary')
@@ -460,8 +460,8 @@ $('.content-table-reporte').DataTable({
         {
           extend: 'excel',
 			footer: true,
-		  text: 'Excel',
-		  className: 'btn btn-sm btn-primary', 
+		  text: 'Exportar a Excel',
+		  className: 'btn btn-sm btn-primary ml-3', 
 			init: function(api, node, config) {
 				$(node).removeClass('btn-secondary')
 			},
