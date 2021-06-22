@@ -4,7 +4,7 @@
 				<div class="row">
 					<div class="col-md-3">
 						<h4 class="page-title">Listado de Productos</h4>
-						<input id="ruta" type="hidden" value="<?php echo base_url(); ?>">
+						<input id="ruta" type="hidden" value="<?php echo site_url(); ?>">
 					</div>
 					<div class="col-md-3">
 						<a href="<?php echo site_url('producto/add'); ?>" class="btn btn-sm btn-success">Agregar Nuevo Producto</a>
