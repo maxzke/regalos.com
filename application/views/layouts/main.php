@@ -82,23 +82,24 @@
                             <i class="fas fa-users"></i>
                                 Usuarios</a>
                         </li>
-                        <!--<li class="nav-item">
+                        
+                        <?php } ?>
+                        <li class="nav-item">
                             <div class="date text-secondary mt-2 ml-5">
-                                <span id="weekDay" class="weekDay"></span>, 
-                                <span id="day" class="day"></span> de
+                                <span id="weekDay" class="weekDay"></span>
+                                <span id="day" class="day ml-1"></span> de
                                 <span id="month" class="month"></span> del
-                                <span id="year" class="year"></span> - 
-                                <span id="hours" class="hours"></span> :
+                                <span id="year" class="year"></span> 
+                                <span id="hours" class="hours ml-3"></span> :
                                 <span id="minutes" class="minutes"></span> :
                                 <span id="seconds" class="seconds"></span>
                             </div>
-                             <div class="clock text-secondary">
+                             <!--<div class="clock text-secondary">
                                 <span id="hours" class="hours"></span> :
                                 <span id="minutes" class="minutes"></span> :
                                 <span id="seconds" class="seconds"></span>
                             </div> -->
                         </li>
-                        <?php } ?>
                     </ul>
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                         

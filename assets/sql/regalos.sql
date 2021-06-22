@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 21-06-2021 a las 04:11:47
--- Versión del servidor: 5.7.33
--- Versión de PHP: 7.4.19
+-- Tiempo de generación: 22-06-2021 a las 23:22:49
+-- Versión del servidor: 5.7.24
+-- Versión de PHP: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -78,10 +78,10 @@ CREATE TABLE `auth_sessions` (
 --
 
 INSERT INTO `auth_sessions` (`id`, `user_id`, `login_time`, `modified_at`, `ip_address`, `user_agent`) VALUES
-('nalrval217n2jntc4bprhe22lagb9dfn', 342590530, '2021-06-21 04:04:48', '2021-06-21 04:04:48', '127.0.0.1', 'Chrome 91.0.4472.106 on Windows 10'),
-('fvq29k4ol9dan60jjiu2abab4nomeea6', 342590530, '2021-06-20 04:24:00', '2021-06-20 04:29:59', '127.0.0.1', 'Chrome 91.0.4472.106 on Windows 10'),
-('mbe5qpm2l7pcfj7np59ulvv5mjrbg164', 342590530, '2021-06-20 17:06:57', '2021-06-20 17:19:11', '127.0.0.1', 'Chrome 91.0.4472.106 on Windows 10'),
-('j0pstat2ro5d8aifr69juvkafpcaioam', 342590530, '2021-06-20 17:13:22', '2021-06-20 17:18:39', '127.0.0.1', 'Chrome 91.0.4472.106 on Windows 10');
+('ncc9tt6muijdpqf3a10o29h7m645cbra', 3173561088, '2021-06-22 23:05:38', '2021-06-22 23:15:06', '127.0.0.1', 'Chrome 91.0.4472.114 on Windows 10'),
+('o3ih89oum9lc7ae2aiq23sk3u5ol9j2p', 342590530, '2021-06-22 21:03:54', '2021-06-22 21:03:54', '127.0.0.1', 'Chrome 91.0.4472.114 on Windows 10'),
+('suj6c1m39s9p00purkgr511vb7s96ob0', 342590530, '2021-06-22 17:04:41', '2021-06-22 18:42:23', '127.0.0.1', 'Chrome 91.0.4472.114 on Windows 10'),
+('t5kh94a6r4akina74ot556idpbm3b6uc', 342590530, '2021-06-22 18:46:19', '2021-06-22 20:59:24', '127.0.0.1', 'Chrome 91.0.4472.114 on Windows 10');
 
 -- --------------------------------------------------------
 
@@ -202,7 +202,28 @@ INSERT INTO `detalles` (`id`, `id_venta`, `producto`, `cantidad`, `precio`, `imp
 (1, 1, 'MINIATURA ARBOL DE NAVIDAD', 1, '60.0', '60.0', '5.0'),
 (2, 2, 'GLOBO TE AMO DECORACION SIN HELIO', 1, '100.0', '100.0', '0.0'),
 (3, 2, 'BOLSA CHICA FUDI SAN VALENTIN', 1, '25.0', '25.0', '0.0'),
-(4, 2, 'CARGA DE ELIO LATEX JUMBO', 1, '250.0', '250.0', '0.0');
+(4, 2, 'CARGA DE ELIO LATEX JUMBO', 1, '250.0', '250.0', '0.0'),
+(5, 3, 'GLOBO CHICO TODA OCACION', 1, '25.0', '25.0', '0.0'),
+(6, 4, 'GLOBO CHICO TODA OCACION', 1, '25.0', '25.0', '0.0'),
+(7, 5, 'GLOBO MEDIANO SAN VALENTIN', 1, '60.0', '60.0', '0.0'),
+(8, 6, 'GLOBO GRANDE CORAZON ESPIRAL', 1, '150.0', '150.0', '0.0'),
+(9, 7, 'GLOBO BABY SHOWER', 1, '50.0', '50.0', '0.0'),
+(10, 8, 'LENTES UNIXE', 1, '70.0', '70.0', '0.0'),
+(11, 9, 'CARGA DE ELIO 30 CM LATEX ', 1, '25.0', '25.0', '0.0'),
+(12, 10, 'GLOBO CHICO TODA OCACION', 1, '25.0', '25.0', '0.0'),
+(13, 11, 'GLOBO CHICO TODA OCACION', 1, '25.0', '25.0', '0.0'),
+(14, 12, 'GLOBO MEDIANO SAN VALENTIN', 1, '60.0', '60.0', '0.0'),
+(15, 13, 'GLOBO CHICO TODA OCACION', 1, '25.0', '25.0', '0.0'),
+(16, 14, 'GLOBO CHICO TODA OCACION', 1, '25.0', '25.0', '0.0'),
+(17, 15, 'GLOBO MEDIANO SAN VALENTIN', 1, '60.0', '60.0', '0.0'),
+(18, 16, 'GLOBO GRANDE CORAZON ESPIRAL', 1, '150.0', '150.0', '0.0'),
+(19, 17, 'GLOBO CHICO TODA OCACION', 1, '25.0', '25.0', '0.0'),
+(20, 18, 'GLOBO MEDIANO SAN VALENTIN', 1, '60.0', '60.0', '0.0'),
+(21, 19, 'GLOBO CHICO TODA OCACION', 1, '25.0', '25.0', '0.0'),
+(22, 20, 'PELUCHE ALCANCIA ', 1, '265.0', '265.0', '0.0'),
+(23, 21, 'CAJITA P/ RELOJ', 1, '25.0', '25.0', '0.0'),
+(24, 22, 'CUADRO DE POOH FAMILIAR ', 1, '150.0', '150.0', '0.0'),
+(25, 23, 'MINIATURA EMOTICONES ', 1, '54.0', '54.0', '0.0');
 
 -- --------------------------------------------------------
 
@@ -295,7 +316,28 @@ CREATE TABLE `pagos` (
 
 INSERT INTO `pagos` (`id`, `id_venta`, `id_metodo`, `importe`, `fecha`) VALUES
 (1, 1, 1, '60.0', '2021-06-21 01:48:30'),
-(2, 2, 1, '375.0', '2021-06-21 02:54:27');
+(2, 2, 1, '375.0', '2021-06-21 02:54:27'),
+(3, 3, 1, '25.0', '2021-06-21 16:15:57'),
+(4, 4, 1, '25.0', '2021-06-22 16:34:53'),
+(5, 5, 1, '60.0', '2021-06-22 16:35:03'),
+(6, 6, 1, '150.0', '2021-06-22 16:35:12'),
+(7, 7, 1, '50.0', '2021-06-22 16:35:23'),
+(8, 8, 1, '70.0', '2021-06-22 16:35:33'),
+(9, 9, 1, '25.0', '2021-06-22 16:35:48'),
+(10, 10, 1, '25.0', '2021-06-22 16:35:59'),
+(11, 11, 1, '25.0', '2021-06-22 16:36:09'),
+(12, 12, 1, '60.0', '2021-06-22 16:36:20'),
+(13, 13, 1, '25.0', '2021-06-22 17:00:10'),
+(14, 14, 1, '25.0', '2021-06-22 17:00:30'),
+(15, 15, 1, '60.0', '2021-06-22 17:00:49'),
+(16, 16, 1, '150.0', '2021-06-22 17:01:08'),
+(17, 17, 1, '25.0', '2021-06-22 17:03:33'),
+(18, 18, 1, '60.0', '2021-06-22 17:04:12'),
+(19, 19, 1, '25.0', '2021-06-22 17:04:25'),
+(20, 20, 1, '265.0', '2021-06-22 22:15:40'),
+(21, 21, 1, '25.0', '2021-06-22 22:15:55'),
+(22, 22, 1, '150.0', '2021-06-22 22:16:07'),
+(23, 23, 1, '54.0', '2021-06-22 23:06:12');
 
 -- --------------------------------------------------------
 
@@ -350,7 +392,7 @@ INSERT INTO `productos` (`id`, `nombre`, `codigo`, `nombre_generico`, `id_catego
 (14, 'LAMPARA DE LAVA', '00123', 'L.LAVA', 22, 0, 0, '100.0', '250.0', 27, '2012-07-24 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (15, 'CUADRO DE EYORE GRANDE', '00213', 'C.EEYORE', 22, 0, 0, '100.0', '250.0', 26, '2012-07-24 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (16, 'RELOJ UNISET CABALLERO', '00214', 'PUMAS', 23, 0, 0, '75.0', '250.0', 27, '2012-07-24 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
-(17, 'CUADRO DE POOH FAMILIAR ', '00215', 'C.FAMILI', 22, 1, 0, '70.0', '150.0', 26, '2012-07-24 00:00:00', '', 0, 0, NULL, NULL, 0, 70, 0, 0, 0, 0, ''),
+(17, 'CUADRO DE POOH FAMILIAR ', '00215', 'C.FAMILI', 22, 0, 0, '70.0', '150.0', 26, '2012-07-24 00:00:00', '', 0, 0, NULL, NULL, 0, 70, 0, 0, 0, 0, ''),
 (18, 'CUADRO BB ROSA', '079522681318', 'C.ROSA', 22, 0, 0, '50.0', '100.0', 26, '2012-07-24 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (19, 'MINIATURA CUADRO REPUJADO ', '00379', 'MINI.CUADRI', 27, 1, 0, '7.0', '40.0', 26, '2012-07-25 00:00:00', '', 0, 0, NULL, NULL, 0, 7, 0, 0, 0, 0, ''),
 (20, 'BOTE CON DULCE MEDIANA ', '00175', 'BOTELL-M', 27, 1, 0, '30.0', '79.0', 26, '2012-07-25 00:00:00', '', 0, 0, NULL, NULL, 0, 30, 0, 0, 0, 0, ''),
@@ -398,14 +440,14 @@ INSERT INTO `productos` (`id`, `nombre`, `codigo`, `nombre_generico`, `id_catego
 (62, 'DIJE ACERO INOXIDABLE CRUZ C/ CAUCHO ', '00386', 'D.CRUZ', 23, 0, 0, '60.0', '170.0', 27, '2012-06-09 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (63, 'COSMETIQUERA  YAALI', '7506024859035', 'C.YAALI', 23, 0, 0, '50.0', '100.0', 27, '2012-06-09 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (64, 'CINTURON P/DAMA BRILLIT', '001791', 'C.BRILLIT', 23, 0, 0, '40.0', '100.0', 27, '2012-06-09 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
-(65, 'LENTES UNIXE', '00013', 'UNIX', 23, 1, 0, '28.0', '70.0', 27, '2012-06-09 00:00:00', '', 0, 0, NULL, NULL, 0, 28, 0, 0, 0, 0, ''),
+(65, 'LENTES UNIXE', '00013', 'UNIX', 23, 0, 0, '28.0', '70.0', 27, '2012-06-09 00:00:00', '', 0, 0, NULL, NULL, 0, 28, 0, 0, 0, 0, ''),
 (66, 'MONEDERO FLO YAALI', '00979', 'M.FLO', 23, 0, 0, '40.0', '100.0', 27, '2012-06-09 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (67, 'BOLSO FASION DAMA LUNARES', '00284', 'B.FASS', 23, 1, 0, '45.0', '170.0', 27, '2012-06-09 00:00:00', '', 0, 0, NULL, NULL, 0, 45, 0, 0, 0, 0, ''),
 (68, 'PELUCHE SULY Y PERRO AMARILLO POLIESFERA ', '00537', 'P-SULY', 20, 0, 0, '85.0', '150.0', 27, '2012-06-09 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (69, 'COJIN STITCH GRANDE', '00137', 'STICHIS', 20, 0, 0, '120.0', '350.0', 24, '2012-06-14 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (70, 'MONEDERO DE METAL DISNEY GRANDE ', '00115', 'ALCAN.B.G', 22, 0, 0, '27.0', '59.0', 26, '2012-06-14 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (71, 'BOTE CON DULCE CURATIVOS', '716', 'CURA', 27, 1, 0, '55.0', '100.0', 26, '2012-06-14 00:00:00', '', 0, 0, NULL, NULL, 0, 55, 0, 0, 0, 0, ''),
-(72, 'PELUCHE ALCANCIA ', '00113', 'ALCAN.B.CH', 20, 4, 0, '120.0', '265.0', 26, '2012-06-14 00:00:00', '', 0, 0, NULL, NULL, 0, 480, 0, 0, 0, 0, ''),
+(72, 'PELUCHE ALCANCIA ', '00113', 'ALCAN.B.CH', 20, 3, 0, '120.0', '265.0', 26, '2012-06-14 00:00:00', '', 0, 0, NULL, NULL, 0, 480, 0, 0, 0, 0, ''),
 (73, 'CIGARRERAS', '00131', 'CIGA', 23, 1, 0, '75.0', '190.0', 26, '2012-06-14 00:00:00', '', 0, 0, NULL, NULL, 0, 75, 0, 0, 0, 0, ''),
 (74, 'MOTO DE METAL', '00102', 'MOTT', 22, 0, 0, '75.0', '200.0', 27, '2012-06-14 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (75, 'TERMO AMOR Y AMISTAD', '00136', 'TERMO', 27, 0, 0, '129.0', '250.0', 26, '2012-06-14 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
@@ -571,8 +613,8 @@ INSERT INTO `productos` (`id`, `nombre`, `codigo`, `nombre_generico`, `id_catego
 (235, 'COJIN NEGRO MEDIANO TRIMANIX', '00791', 'C-NEGRO', 20, 0, 0, '65.0', '180.0', 26, '2013-01-31 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (236, 'ALMOHADA PINTADA CORAZON GRANDE', '00792', 'AL-CORAZ', 20, 0, 0, '170.0', '350.0', 26, '2013-01-31 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (237, 'ALMOHADA LARGA GRANDE', '00793', 'MANTA', 20, 0, 0, '150.0', '350.0', 26, '2013-01-31 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
-(238, 'GLOBO MEDIANO SAN VALENTIN', '02', 'GLOBO-1', 30, 17, 0, '21.0', '60.0', 26, '2013-02-02 00:00:00', '', 0, 0, NULL, NULL, 0, 357, 0, 0, 0, 0, ''),
-(239, 'GLOBO GRANDE CORAZON ESPIRAL', '03', 'GLOBO-3', 30, 11, 0, '40.0', '150.0', 26, '2013-02-04 00:00:00', '', 0, 0, NULL, NULL, 0, 440, 0, 0, 0, 0, ''),
+(238, 'GLOBO MEDIANO SAN VALENTIN', '02', 'GLOBO-1', 30, 13, 0, '21.0', '60.0', 26, '2013-02-02 00:00:00', '', 0, 0, NULL, NULL, 0, 357, 0, 0, 0, 0, ''),
+(239, 'GLOBO GRANDE CORAZON ESPIRAL', '03', 'GLOBO-3', 30, 9, 0, '40.0', '150.0', 26, '2013-02-04 00:00:00', '', 0, 0, NULL, NULL, 0, 440, 0, 0, 0, 0, ''),
 (240, 'GLOBO MEDIANO ALARGADO', '04', 'GLOBO-4', 30, 33, 0, '22.0', '70.0', 26, '2013-02-04 00:00:00', '', 0, 0, NULL, NULL, 0, 726, 0, 0, 0, 0, ''),
 (241, 'GLOBO EX GRANDE TODA OCACION ', '05', 'GLOBO-5', 30, 15, 0, '40.0', '150.0', 26, '2013-02-04 00:00:00', '', 0, 0, NULL, NULL, 0, 600, 0, 0, 0, 0, ''),
 (242, 'REKADITO KIUT (SILUETAS )', '00794', 'REKA', 29, 0, 0, '50.0', '130.0', 25, '2013-02-05 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
@@ -605,7 +647,7 @@ INSERT INTO `productos` (`id`, `nombre`, `codigo`, `nombre_generico`, `id_catego
 (269, 'BOLSA CELOFAN EX JUMBO', '3', 'CELO3', 1, 0, 0, '15.0', '37.0', 26, '2013-02-10 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (270, 'CAJA CRAF EX JUMBO ', '00812', 'CAJA-EXJ', 1, 0, 0, '60.0', '160.0', 29, '2013-02-11 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (271, 'CAJA CRAF GRANDE MOD2', '00813', 'CRAF-2', 1, 0, 0, '32.0', '100.0', 29, '2013-02-11 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
-(272, 'GLOBO BABY SHOWER', '06', 'G-BABY', 30, 81, 0, '15.0', '50.0', 26, '2013-04-26 00:00:00', '', 0, 0, NULL, NULL, 0, 1215, 0, 0, 0, 0, ''),
+(272, 'GLOBO BABY SHOWER', '06', 'G-BABY', 30, 80, 0, '15.0', '50.0', 26, '2013-04-26 00:00:00', '', 0, 0, NULL, NULL, 0, 1215, 0, 0, 0, 0, ''),
 (273, 'PERGAMINO MANTA MEDIANO', '00814', 'PERGAMINO-MED', 22, 3, 0, '135.0', '245.0', 26, '2013-05-04 00:00:00', '', 0, 0, NULL, NULL, 0, 405, 0, 0, 0, 0, ''),
 (274, 'ALMOHADA MANTA NEGRA TRIMANIX JUMBO', '00815', 'CIJIN-TRI', 20, 3, 0, '195.0', '350.0', 26, '2013-05-04 00:00:00', '', 0, 0, NULL, NULL, 0, 585, 0, 0, 0, 0, ''),
 (275, 'COJIN TRIMANIX CHICO', '00816', 'TRIMANIX-CH', 20, 1, 0, '48.0', '78.0', 26, '2013-05-04 00:00:00', '', 0, 0, NULL, NULL, 0, 48, 0, 0, 0, 0, ''),
@@ -1319,7 +1361,7 @@ INSERT INTO `productos` (`id`, `nombre`, `codigo`, `nombre_generico`, `id_catego
 (980, 'CARTERA DAMA PORTA CEL', '00160', 'PRT-CEL', 23, 0, 0, '55.0', '200.0', 24, '2016-03-10 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (981, 'MINIATURA CHOCO AMOR ', '00161', 'CHOCO', 27, 0, 0, '16.0', '35.0', 26, '2016-03-11 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (982, 'MINIATURA PERRO Y GATO C/ COJIN ', '00162', 'PER-GAT', 27, 0, 0, '30.0', '60.0', 26, '2016-03-11 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
-(983, 'MINIATURA EMOTICONES ', '00163', 'EMOTI', 27, 1, 0, '27.0', '54.0', 26, '2016-03-11 00:00:00', '', 0, 0, NULL, NULL, 0, 27, 0, 0, 0, 0, ''),
+(983, 'MINIATURA EMOTICONES ', '00163', 'EMOTI', 27, 0, 0, '27.0', '54.0', 26, '2016-03-11 00:00:00', '', 0, 0, NULL, NULL, 0, 27, 0, 0, 0, 0, ''),
 (984, 'MINIATURA SAGUESO C/ CERCA', '00164', 'CERQIT', 27, 0, 0, '29.0', '58.0', 26, '2016-03-11 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (985, 'MINIATURA OVEJITA C/ CERCA', '00165', 'OVEJI', 27, 0, 0, '31.0', '62.0', 26, '2016-03-11 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (986, 'MINIATURA CERQUITA GRANDE', '00166', 'CERQ', 27, 0, 0, '42.0', '90.0', 26, '2016-03-11 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
@@ -1685,7 +1727,7 @@ INSERT INTO `productos` (`id`, `nombre`, `codigo`, `nombre_generico`, `id_catego
 (1345, 'PULCERA CHIC GLAMUR NIÑA', '2123', 'GLAMR', 23, 0, 0, '20.0', '40.0', 29, '2020-08-15 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (1346, 'PELUCHITOS LETREROS DE AMOR', '2121', 'LETRER', 27, 9, 0, '40.0', '179.0', 26, '2020-09-08 00:00:00', '', 0, 0, NULL, NULL, 0, 360, 0, 0, 0, 0, ''),
 (1347, 'PULCERA EN CAJA DAMA', '7411', 'P.OFERTA', 23, 1, 0, '35.0', '100.0', 27, '2020-12-04 00:00:00', '', 0, 0, NULL, NULL, 0, 35, 0, 0, 0, 0, ''),
-(1348, 'CARGA DE ELIO 30 CM LATEX ', '70', 'LATEX-30', 30, 20, 0, '10.0', '25.0', 29, '2020-12-13 00:00:00', '', 0, 0, NULL, NULL, 0, 200, 0, 0, 0, 0, ''),
+(1348, 'CARGA DE ELIO 30 CM LATEX ', '70', 'LATEX-30', 30, 19, 0, '10.0', '25.0', 29, '2020-12-13 00:00:00', '', 0, 0, NULL, NULL, 0, 200, 0, 0, 0, 0, ''),
 (1349, 'CARGA DE ELIO 44 CM', '71', 'C-44', 30, 14, 0, '15.0', '30.0', 29, '2020-12-13 00:00:00', '', 0, 0, NULL, NULL, 0, 210, 0, 0, 0, 0, ''),
 (1350, 'CARGA DE ELIO 50 CM', '72', 'C-50', 30, 22, 0, '15.0', '40.0', 29, '2020-12-13 00:00:00', '', 0, 0, NULL, NULL, 0, 330, 0, 0, 0, 0, ''),
 (1351, 'CARGA DE ELIO 76 CM', '73', 'C-76', 30, 26, 0, '20.0', '50.0', 29, '2020-12-13 00:00:00', '', 0, 0, NULL, NULL, 0, 520, 0, 0, 0, 0, ''),
@@ -1828,7 +1870,7 @@ INSERT INTO `productos` (`id`, `nombre`, `codigo`, `nombre_generico`, `id_catego
 (1488, 'BOLSA SAN VALENTIN GRANDE', '00406', 'SAN-G', 1, 0, 0, '9.0', '27.0', 26, '2012-07-25 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (1489, 'CUADRO OSITOS 1', '00212', 'C.OSITOS-1', 22, 0, 0, '30.0', '75.0', 26, '2012-07-25 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (1490, 'RELOJ DE CASITA C/ PENDULO', '00050', 'PENDULO', 22, 0, 0, '53.0', '140.0', 26, '2012-07-25 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
-(1491, 'GLOBO CHICO TODA OCACION', '01', 'GLOBO.1', 30, 57, 0, '10.0', '25.0', 26, '2012-07-25 00:00:00', '', 0, 0, NULL, NULL, 0, 570, 0, 0, 0, 0, ''),
+(1491, 'GLOBO CHICO TODA OCACION', '01', 'GLOBO.1', 30, 49, 0, '10.0', '25.0', 26, '2012-07-25 00:00:00', '', 0, 0, NULL, NULL, 0, 570, 0, 0, 0, 0, ''),
 (1492, 'PORTA RETRATO KIUT 2', '00701', 'P.KIUT-2', 29, 0, 0, '110.0', '200.0', 25, '2012-07-27 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (1493, 'TAZA PROFESIONISTAS', '00702', 'TAZA-PROF', 27, 3, 0, '69.0', '185.0', 26, '2012-07-27 00:00:00', '', 0, 0, NULL, NULL, 0, 207, 0, 0, 0, 0, ''),
 (1494, 'ACRILICOS KIUT', '00704', 'A.KIUT', 29, 0, 0, '70.0', '140.0', 25, '2012-07-27 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
@@ -1904,7 +1946,7 @@ INSERT INTO `productos` (`id`, `nombre`, `codigo`, `nombre_generico`, `id_catego
 (1564, 'MOÑO CHICO NAVIDAD', '00608', 'M-B-M', 1, 25, 0, '4.0', '15.0', 21, '2012-10-11 00:00:00', '', 0, 0, NULL, NULL, 0, 100, 0, 0, 0, 0, ''),
 (1565, 'CAJITA P/ JOYERIA BRAZALETE', '00610', 'JOYE X', 1, 0, 0, '6.0', '20.0', 21, '2012-10-11 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (1566, 'CAJA MINI P/ANILLO', '00611', 'MINI', 1, 35, 0, '4.0', '15.0', 21, '2012-10-11 00:00:00', '', 0, 0, NULL, NULL, 0, 140, 0, 0, 0, 0, ''),
-(1567, 'CAJITA P/ RELOJ', '00612', 'JOYE', 1, 34, 0, '11.0', '25.0', 21, '2012-10-11 00:00:00', '', 0, 0, NULL, NULL, 0, 374, 0, 0, 0, 0, ''),
+(1567, 'CAJITA P/ RELOJ', '00612', 'JOYE', 1, 33, 0, '11.0', '25.0', 21, '2012-10-11 00:00:00', '', 0, 0, NULL, NULL, 0, 374, 0, 0, 0, 0, ''),
 (1568, 'MINIATURA VAQUITA C/ PIEDRA', '00613', 'PIEDRA', 27, 0, 0, '30.0', '70.0', 26, '2012-10-11 00:00:00', '', 0, 0, NULL, NULL, 0, 0, 0, 0, 0, 0, ''),
 (1569, 'BOTELLA C/DULCE CHICA', '00614', 'BOTELL-CH', 27, 5, 0, '41.0', '79.0', 26, '2012-10-11 00:00:00', '', 0, 0, NULL, NULL, 0, 205, 0, 0, 0, 0, '');
 
@@ -1929,7 +1971,9 @@ INSERT INTO `saldo_inicial_caja` (`id`, `importe`, `fecha`, `usuario`) VALUES
 (1, '500.0', '2021-02-05 11:18:32', 'admin'),
 (2, '333.0', '2021-02-02 11:50:53', 'admin'),
 (3, '777.0', '2021-06-19 23:30:13', 'admin'),
-(4, '415.0', '2021-06-20 12:07:02', 'admin');
+(4, '415.0', '2021-06-20 12:07:02', 'admin'),
+(5, '321.0', '2021-06-21 10:43:46', 'admin'),
+(6, '221.0', '2021-06-22 11:31:31', 'admin');
 
 -- --------------------------------------------------------
 
@@ -1989,8 +2033,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `email`, `auth_level`, `banned`, `passwd`, `passwd_recovery_code`, `passwd_recovery_date`, `passwd_modified_at`, `last_login`, `created_at`, `modified_at`) VALUES
-(342590530, 'admin', '', 9, '0', '$2y$11$y58v9bL.aVA.PPbjOftdDOCkMXBdNVC7xTeZHMNLYfs6Nzs1WluM6', NULL, NULL, '2021-02-02 10:26:18', '2021-06-21 04:04:48', '2021-01-21 19:24:54', '2021-06-21 04:04:48'),
-(3173561088, 'diana', '3301270205', 1, '0', '$2y$11$tDheUMMKwfbualnbJibgeeQP1LjORPaDdyoxu.WaxNc.7zuiQ8Lte', NULL, NULL, '2021-06-20 21:49:57', '2021-06-21 02:50:09', '2021-02-02 20:27:48', '2021-06-21 02:50:09');
+(342590530, 'admin', '', 9, '0', '$2y$11$y58v9bL.aVA.PPbjOftdDOCkMXBdNVC7xTeZHMNLYfs6Nzs1WluM6', NULL, NULL, '2021-02-02 10:26:18', '2021-06-22 23:03:15', '2021-01-21 19:24:54', '2021-06-22 23:03:15'),
+(3173561088, 'diana', '3301270205', 1, '0', '$2y$11$tDheUMMKwfbualnbJibgeeQP1LjORPaDdyoxu.WaxNc.7zuiQ8Lte', NULL, NULL, '2021-06-20 21:49:57', '2021-06-22 23:05:38', '2021-02-02 20:27:48', '2021-06-22 23:05:38');
 
 --
 -- Disparadores `users`
@@ -2025,7 +2069,28 @@ CREATE TABLE `ventas` (
 
 INSERT INTO `ventas` (`id`, `id_cliente`, `id_usuario`, `id_mesa`, `pagada`, `fecha`) VALUES
 (1, 0, 'admin', 0, 1, '2021-06-20 20:48:30'),
-(2, 0, 'diana', 0, 1, '2021-06-20 21:54:27');
+(2, 0, 'diana', 0, 1, '2021-06-20 21:54:27'),
+(3, 0, 'admin', 0, 1, '2021-06-21 11:15:57'),
+(4, 0, 'admin', 0, 1, '2021-06-22 11:34:52'),
+(5, 0, 'admin', 0, 1, '2021-06-22 11:35:03'),
+(6, 0, 'admin', 0, 1, '2021-06-22 11:35:12'),
+(7, 0, 'admin', 0, 1, '2021-06-22 11:35:23'),
+(8, 0, 'admin', 0, 1, '2021-06-22 11:35:33'),
+(9, 0, 'admin', 0, 1, '2021-06-22 11:35:48'),
+(10, 0, 'admin', 0, 1, '2021-06-22 11:35:59'),
+(11, 0, 'admin', 0, 1, '2021-06-22 11:36:09'),
+(12, 0, 'admin', 0, 1, '2021-06-22 11:36:20'),
+(13, 0, 'diana', 0, 1, '2021-06-22 12:00:10'),
+(14, 0, 'diana', 0, 1, '2021-06-22 12:00:30'),
+(15, 0, 'diana', 0, 1, '2021-06-22 12:00:49'),
+(16, 0, 'diana', 0, 1, '2021-06-22 12:01:08'),
+(17, 0, 'david', 0, 1, '2021-06-22 12:03:33'),
+(18, 0, 'david', 0, 1, '2021-06-22 12:04:12'),
+(19, 0, 'david', 0, 1, '2021-06-22 12:04:25'),
+(20, 0, 'admin', 0, 1, '2021-06-22 17:15:40'),
+(21, 0, 'admin', 0, 1, '2021-06-22 17:15:55'),
+(22, 0, 'admin', 0, 1, '2021-06-22 17:16:07'),
+(23, 0, 'diana', 0, 1, '2021-06-22 18:06:12');
 
 -- --------------------------------------------------------
 
@@ -2244,7 +2309,7 @@ ALTER TABLE `denied_access`
 -- AUTO_INCREMENT de la tabla `detalles`
 --
 ALTER TABLE `detalles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `ips_on_hold`
@@ -2274,7 +2339,7 @@ ALTER TABLE `metodos_pago`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -2286,7 +2351,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `saldo_inicial_caja`
 --
 ALTER TABLE `saldo_inicial_caja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `seccion`
@@ -2304,7 +2369,7 @@ ALTER TABLE `username_or_email_on_hold`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas_a_credito`
