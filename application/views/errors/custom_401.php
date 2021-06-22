@@ -9,7 +9,7 @@
 		<p class="mt-5 text-dark">
 		No cuentas con permisos necesarios para acceder.
 		</p>
-		<a href="<?php echo base_url('venta'); ?>">volver</a>
+		<a href="<?php echo site_url('venta'); ?>">volver</a>
 	</div>
 	<div class="col-md-4"></div>
 </div>

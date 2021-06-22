@@ -3,7 +3,7 @@
 				<div class="col-md-12 text-center">
 					<ul class="breadcrumbs">
 						<li class="nav-home">
-							<h3 class="text-dark text-uppercase">Reporte de ventas <?php echo $fecha ?></h3>
+							<h3 class="text-dark text-uppercase">Reporte de ventas <?php echo $fecha."".$_SESSION['empleado'] ?></h3>
 						</li>
 						<li class="nav-home">
 							<button type="button" class="btn btn-sm btn-primary ml-3" data-toggle="modal" data-target="#exampleModal">Buscar Por Fecha</button>
@@ -12,8 +12,50 @@
 					</ul>
 				</div>
 				<div class="col-md-12">
+					<?php
+					//print_r($info);
+						foreach ($info as $item) { ?> 
+							<div class="alert alert-info bg-info my-3 text-uppercase text-white text-center" role="alert">
+								DESGLOCE DE <?php echo $item['nombre']; ?>
+							</div>
+							<table class="table table-sm table-hover table-bordered bg-white content-table-reporte">
+									<thead>
+										<tr>
+											<th>PRODUCTO</th>
+											<th>Cantidad</th>
+											<th>Precio</th>
+											<th>Total</th>
+										</tr>
+									</thead>
+									<tbody class="bg-white">								
+										<?php 
+											$suma =0; 
+											foreach($item['productos'] as $p){ ?>
+												<tr>
+													<td><?php echo $p['producto']; ?></td>
+													<td><?php echo $p['cantidad']; ?></td>
+													<td><?php echo number_format($p['precio'],2,".","," ); ?></td>
+													<td class="text-right"><?php echo number_format($p['total'],2,".","," ); $suma += $p['total']; ?></td>
+												</tr>
+										<?php } ?>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th class="bg-secondary"></th>
+											<th class="bg-secondary"></th>
+											<th class="text-right">Total</th>							
+											<th class="text-right">$ <?php echo number_format($suma,2,".","," ); ?></th>
+										</tr>
+									</tfoot>
+								</table>
+							<?php  
+						}  
+						?>
 				<!-- CONTENIDO -->
-					<table id="content-table-reporte" class="table table-sm table-hover table-bordered bg-white">
+					<div class="alert alert-success my-3 bg-success text-center text-white" role="alert">
+						TOTAL
+					</div>
+					<table class="table table-sm table-hover table-bordered bg-white content-table-reporte">
                         <thead>
 							<tr>
 								<th>PRODUCTO</th>
@@ -33,16 +75,16 @@
 								<td class="text-right"><?php echo number_format($p['total'],2,".","," ); $suma += $p['total']; ?></td>
 							</tr>
 							<?php } ?>
-					</tbody>
-					<tfoot>
-						<tr>
-							<th class="bg-secondary"></th>
-							<th class="bg-secondary"></th>
-							<th class="text-right">Total</th>							
-							<th class="text-right">$ <?php echo number_format($suma,2,".","," ); ?></th>
-						</tr>
-					</tfoot>
-				</table>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th class="bg-secondary"></th>
+								<th class="bg-secondary"></th>
+								<th class="text-right">Total</th>							
+								<th class="text-right">$ <?php echo number_format($suma,2,".","," ); ?></th>
+							</tr>
+						</tfoot>
+					</table>
 				<!-- Modal -->
 				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
@@ -57,7 +99,7 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-6">
-										<form method="get" action="<?php echo base_url('reportes/getReporte'); ?>">
+										<form method="get" action="<?php echo site_url('reportes/getReporte'); ?>">
 											POR FECHA
 											<input type="date" name="desde">
 											<br><br><br>
@@ -65,7 +107,7 @@
 										</form>
 									</div>
 									<div class="col-md-6 ml-auto">
-										<form method="get" action="<?php echo base_url('reportes/getReporte'); ?>">
+										<form method="get" action="<?php echo site_url('reportes/getReporte'); ?>">
 											RANGO DE FECHA
 											<input type="date" name="desde">
 											<input type="date" name="hasta">

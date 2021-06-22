@@ -158,10 +158,39 @@ function show_detail(folio){
 	});
 }
 
+function alertCancelar(){
+	Swal.fire({
+		title: 'Deseas cancelar la venta?',
+		showDenyButton: true,
+		showCancelButton: false,
+		confirmButtonText: `Si, cancelar`,
+		denyButtonText: `No, volver`,
+	  }).then((result) => {
+		/* Read more about isConfirmed, isDenied below */
+		if (result.isConfirmed) {
+		  Swal.fire('Venta Cancelada!', '', 'success')
+		} else if (result.isDenied) {
+		  Swal.fire('Changes are not saved', '', 'info')
+		}
+	  })
+}
+
 function pinta_detalles(detalles,total,pagado){
-	let table = document.querySelector('#table-detalles-ticket tbody');
+	let table = document.querySelector('#detailTicket');
 	let table_footer = document.querySelector('#table-detalles-ticket_wrapper tfoot');
 	let fila = "";
+	fila +=`<table id="table-detalles-ticket" class="table table-sm table-hover bg-white">
+			<thead>
+				<tr>
+					<th>Cant</th>
+					<th>Descripcion</th>
+					<th class="text-right">Precio</th>
+					<th class="text-right">Importe</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>`;                        
+			
 	detalles.forEach(elemento => {
 		fila += `<tr>
 					<td>${elemento.cantidad}</td>
@@ -169,31 +198,39 @@ function pinta_detalles(detalles,total,pagado){
 					<td class="text-right">$${elemento.precio}</td>
 					<td class="text-right">$${elemento.importe}</td>
 					<td>
-						<a class="btn btn-xs btn-warning"
-							data-toggle="tooltip"
-							data-placement="top"
-							title="Devolver">
-							<i class="fas fa-reply"></i>
-						</a>
+						
 					</td>
 				</tr>`;
 	});
+	fila += `</tbody>
+				<tfoot class="bg-secondary">
+				<tr>
+					<td></td>
+					<td></td>
+					<td>Total</td>
+					<td class="text-right">${total}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>Pagado:</td>
+					<td class="text-right">${pagado}</td>
+					<td></td>
+				</tr>
+				</tfoot>
+			</table>
+			<ul class="breadcrumbs">
+				<li class="nav-home">
+					<button class="btn btn-danger btn-xs" onclick="alertCancelar()">Cancelar venta</button>
+				</li>
+				<li class="nav-home">
+				<button class="btn btn-success btn-xs">ReImprimir ticket</button>
+				</li>
+			</ul>
+			<br>
+			<span class="ml-5 text-muted">Cancelar: cancela venta y hace la devolución en inventario</span>`;
 	table.innerHTML = fila;
-	let pie = `<tr>
-			<td></td>
-			<td></td>
-			<td>Total</td>
-			<td class="text-right">${total}</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td>Pagó Con</td>
-			<td class="text-right">${pagado}</td>
-			<td></td>
-		</tr>`;
-	table_footer.innerHTML = pie;
 	//$('#table-detalles-ticket_wrapper tfoot').html(pie);
 }
 
@@ -398,7 +435,7 @@ $('#buscar-productos-table').DataTable(
 *	TABLA PARA REPORTES DE VENTAS
 */
 let fecha = $('#report').val();
-$('#content-table-reporte').DataTable({
+$('.content-table-reporte').DataTable({
 	'dom'  : 'Bfrtip',
     buttons: [        
         {

@@ -9,7 +9,7 @@
                             <li class="nav-home">
                                 <button type="button" class="btn btn-sm btn-primary ml-3" data-toggle="modal" data-target="#exampleModal">Buscar Por Fecha</button>
                                 <input type="hidden" id="report" value="<?php echo $fecha ?>">
-                                <input type="hidden" id="ruta" value="<?php echo base_url(); ?>">
+                                <input type="hidden" id="ruta" value="<?php echo site_url()."/"; ?>">
                             </li>
                         </ul>
                     </div>
@@ -42,34 +42,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-7 bg-white">
+            <div class="col-md-7 bg-white" id="detailTicket">
                 <!-- TABLE DETALLES -->
-                <table id="table-detalles-ticket" class="table table-sm table-hover bg-white">
-                    <thead>
-                        <tr>
-                            <th>Cant</th>
-                            <th>Descripcion</th>
-                            <th>Precio</th>
-                            <th>Importe</th>
-                            <th>opc</th>
-                        </tr>
-                    </thead>
-                    <tbody>                        
-                    </tbody>
-                    <tfoot class="bg-secondary">
-                        
-                    </tfoot>
-                </table>
-                <!-- <ul class="breadcrumbs">
-                    <li class="nav-home">
-                        <button class="btn btn-danger btn-xs">Cancelar venta</button>
-                    </li>
-                    <li class="nav-home">
-                    <button class="btn btn-success btn-xs">ReImprimir ticket</button>
-                    </li>
-                </ul>
-                <br>
-                <span class="ml-5 text-muted">Cancelar: cancela venta y hace la devolución en inventario</span> -->
+                
                 <!-- /TABLE DETALLES -->
             </div>
         </div>
@@ -87,7 +62,7 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-6">
-										<form method="post" action="<?php echo base_url('historial_ventas/por_fecha'); ?>">
+										<form method="post" action="<?php echo site_url('historial_ventas/por_fecha'); ?>">
 											POR FECHA
 											<input type="date" name="fecha">
 											<br><br><br>

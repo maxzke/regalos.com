@@ -53,31 +53,31 @@
                 <div class="container-fluid">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item <?php echo ($pagina_activa == 'venta' ? 'active' : '');  ?>">
-                            <a class="nav-link" href="<?php echo base_url('venta');  ?>">
+                            <a class="nav-link" href="<?php echo site_url('venta');  ?>">
                                 <i class="fas fa-shopping-cart fa-lg"></i>
                                 Venta
                             <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item <?php echo ($pagina_activa == 'historial_ventas' ? 'active' : '');  ?>">
-                            <a class="nav-link" href="<?php echo base_url('historial_ventas');  ?>">
+                            <a class="nav-link" href="<?php echo site_url('historial_ventas');  ?>">
                                 <i class="fas fa-history fa-lg"></i>
                                 Historial Ventas
                             <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item <?php echo ($pagina_activa == 'productos' ? 'active' : '');  ?>">
-                            <a class="nav-link" href="<?php echo base_url('productos');  ?>">
+                            <a class="nav-link" href="<?php echo site_url('productos');  ?>">
                                 <i class="fas fa-box-open fa-lg"></i>
                                 Productos</a>
                         </li>
                         <li class="nav-item <?php echo ($pagina_activa == 'reportes' ? 'active' : '');  ?>">
-                            <a class="nav-link" href="<?php echo base_url('reportes');  ?>">
+                            <a class="nav-link" href="<?php echo site_url('reportes');  ?>">
                                 <i class="fas fa-chart-line fa-lg"></i>
                                 Reportes</a>
                         </li>
                         <li class="nav-item <?php echo ($pagina_activa == 'usuarios' ? 'active' : '');  ?>">
-                            <a class="nav-link" href="<?php echo base_url('usuarios');  ?>">
+                            <a class="nav-link" href="<?php echo site_url('usuarios');  ?>">
                             <i class="fas fa-users"></i>
                                 Usuarios</a>
                         </li>
@@ -114,7 +114,7 @@
                             <ul class="dropdown-menu dropdown-user animated fadeIn bg-danger">
                                 <div class="dropdown-user-scroll scrollbar-outer">                                    
                                     <li>                                       
-                                        <a class="dropdown-item" href="<?php echo base_url('login/logout') ?>">
+                                        <a class="dropdown-item" href="<?php echo site_url('login/logout') ?>">
                                             <strong>Finalizar Sesión</strong>
                                         </a>
                                     </li>
@@ -187,9 +187,10 @@
     <script src="<?php echo base_url(); ?>assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
 
-    <!-- Sweet Alert -->
+    <!-- Sweet Alert 
     <script src="<?php echo base_url(); ?>assets/js/plugin/sweetalert/sweetalert.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/sweetalert2.all.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/sweetalert2.all.min.js"></script>-->
+    <script src="<?php echo base_url(); ?>assets/js/sweetalert2@11.js"></script>
     <!-- ALERTAS COCINA -->
     
     <!-- Atlantis JS -->

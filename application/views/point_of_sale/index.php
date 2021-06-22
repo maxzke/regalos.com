@@ -5,7 +5,7 @@
     <div class="col-md-2">
         <input type="text" class="form-control form-control-sm sc-add-to-cart-code" name="inputBuscarPorCodigo" id="inputBuscarPorCodigo" placeholder="Código"
         onclick="this.select()">
-        <input type="hidden" name="url" id="ruta" value="<?php echo base_url(); ?>">
+        <input type="hidden" name="url" id="ruta" value="<?php echo site_url()."/"; ?>">
     </div>
     <div class="col-md-8">
         <button 

@@ -5,6 +5,7 @@ class Reportes extends MY_Controller{
     function __construct()
     {
         parent::__construct();
+        
         $this->require_min_level(1);  
         if( !$this->is_role('admin') ){
             redirect('restringido');
@@ -12,11 +13,15 @@ class Reportes extends MY_Controller{
     } 
 
     function index(){  
+        $this->load->library('session');
+        $this->session->set_userdata('empleado', 'DAVID');
         $this->getReporte();
     }
 
     function getReporte(){
-
+        $this->load->model('User_model');
+        $data['usuarios'] = $this->User_model->get_all_users();
+        $usuariosArray = [];
         $fechaInicial = $this->input->get('desde');
         $fechaFinal = $this->input->get('hasta');
 
@@ -32,17 +37,30 @@ class Reportes extends MY_Controller{
             $Hoy = date('d-m-Y');
             $data['fecha'] = $Hoy;
             $data['productos'] = $this->getReporteHoy();
+
+            
+            foreach ($data['usuarios'] as $item) {
+                $nombreUsuario = $item['username'];
+                $productosUsuario = $this->getReporteHoy($item['username']);
+            
+                $msg = array(
+                    'nombre' => $nombreUsuario,
+                    'productos' => $productosUsuario
+                );
+                array_push($usuariosArray,$msg);
+            }
+
         }
         if ($fechaInicial != 0 and $fechaFinal == 0) {
             $data['fecha'] = $fechaInicial;
-            $data['productos'] = $this->getReporteFecha($fechaInicial);
-            
+            $data['productos'] = $this->getReporteFecha($fechaInicial);                        
         }
         if ($fechaInicial != 0 and $fechaFinal != 0) {
             $data['fecha'] = $fechaInicial." al ".$fechaFinal;
             $data['productos'] = $this->getReporteRango($fechaInicial,$fechaFinal);
 
         }
+        $data['info'] = $usuariosArray;
         $data['_view'] = 'reportes/index';
         //$data['pagina_activa'] = "venta,productos,reportes"
         $data['pagina_activa'] = "reportes";
@@ -50,11 +68,18 @@ class Reportes extends MY_Controller{
         
     }
 
-    private function getReporteHoy(){
-        $this->load->model('Reportes_model');
-        date_default_timezone_set('America/Mexico_City');
-        $Hoy = date('d-m-Y');
-        return $this->Reportes_model->reportToday($Hoy);        
+    private function getReporteHoy($usuario=null){
+        if ($usuario) {
+            $this->load->model('Reportes_model');
+            date_default_timezone_set('America/Mexico_City');
+            $Hoy = date('d-m-Y');
+            return $this->Reportes_model->reportToday_usuario($Hoy,$usuario);
+        }else{
+            $this->load->model('Reportes_model');
+            date_default_timezone_set('America/Mexico_City');
+            $Hoy = date('d-m-Y');
+            return $this->Reportes_model->reportToday($Hoy);        
+        }
     }
     private function getReporteFecha($fecha){
         $this->load->model('Reportes_model');
