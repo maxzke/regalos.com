@@ -441,12 +441,12 @@ $('.content-table-reporte').DataTable({
         {
 		    extend: 'pdfHtml5',
 			footer: true,
-			text: 'Esportar a PDF',
+			text: 'Exportar a PDF',
 			className: 'btn btn-sm btn-primary', 
 			init: function(api, node, config) {
 				$(node).removeClass('btn-secondary')
 			},
-		    filename: 'Reporte ',
+		    filename: 'Corte',
 		    pageSize: 'LEGAL',
 		    orientation: 'portrait', //'landscape'
 		    title:'Reporte de Ventas '+fecha,
@@ -465,8 +465,8 @@ $('.content-table-reporte').DataTable({
 			init: function(api, node, config) {
 				$(node).removeClass('btn-secondary')
 			},
-          title:'Reporte de Ventas '+fecha,
-          filename: 'Reporte ',
+          title:'Corte '+fecha,
+          filename: 'Corte ',
         }
        
 	],       
@@ -474,7 +474,7 @@ $('.content-table-reporte').DataTable({
 		"responsive": true,
 		'paging': false,
 		'lengthChange': false,
-		'searching': true,
+		'searching': false,
 		'ordering': true,
 		'info': true,
 		'autoWidth': true,

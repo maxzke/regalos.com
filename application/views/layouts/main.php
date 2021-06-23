@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/stilos.css">
 </head>
 
-<body class="contenido">
+<body class="contenido" style="font-size: 15px;">
     <div class="wrapper">
         <div class="main-header encabezado">
             <!-- Logo Header -->
@@ -75,7 +75,7 @@
                         <li class="nav-item <?php echo ($pagina_activa == 'reportes' ? 'active' : '');  ?>">
                             <a class="nav-link" href="<?php echo site_url('reportes');  ?>">
                                 <i class="fas fa-chart-line fa-lg"></i>
-                                Reportes</a>
+                                Corte</a>
                         </li>
                         <li class="nav-item <?php echo ($pagina_activa == 'usuarios' ? 'active' : '');  ?>">
                             <a class="nav-link" href="<?php echo site_url('usuarios');  ?>">

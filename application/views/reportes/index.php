@@ -3,11 +3,8 @@
 				<div class="col-md-12 text-center">
 					<ul class="breadcrumbs">
 						<li class="nav-home">
-							<h3 class="text-dark text-uppercase bg-info px-5 py-2">Reporte de ventas <?php echo $fecha ?></h3>
-						</li>
-						<li class="nav-home">
 							<button type="button" class="btn btn-sm btn-primary ml-3" data-toggle="modal" data-target="#exampleModal">
-							<i class="fas fa-search"></i> Buscar Por Fecha
+							<i class="fas fa-search"></i> Corte Por Fecha
 							</button>
 							<input type="hidden" id="report" value="<?php echo $fecha ?>">
 						</li>
@@ -16,10 +13,11 @@
 				<div class="col-md-12">
 					<?php
 						foreach ($info as $item) { 
-							?> 
-							<div class="bg-white mt-5">
-								<div class="alert alert-warning bg-warning my-3 text-uppercase text-dark text-center" role="alert">
-									corte :::  <?php echo $item['nombre']." ::: ".$fecha; ?>
+							$count = sizeof($item['productos']);
+							if ($count > 0): ?>
+							<div class="bg-white">
+								<div class="alert alert-warning bg-dark my-3 text-uppercase text-white text-center" role="alert">
+									<?php echo $item['nombre']."&nbsp;&nbsp;".$fecha; ?>
 								</div>
 								<table class="table table-sm table-hover table-bordered bg-white content-table-reporte">
 										<thead>
@@ -46,19 +44,23 @@
 											<tr>
 												<th></th>
 												<th></th>
-												<th class="text-right">Total</th>							
-												<th class="text-right">$ <?php echo number_format($suma,2,".","," ); ?></th>
+												<th class="text-right bg-dark text-white text-capitalize"><?php echo $item['nombre'] ?> Total</th>							
+												<th class="text-right bg-dark text-white">$ <?php echo number_format($suma,2,".","," ); ?></th>
 											</tr>
 										</tfoot>
 									</table>
 							</div>
-							<?php  
+							<br>
+							<?php 
+							endif; 
 						}  
 						?>
 				<!-- CONTENIDO -->
+				<br>
 					<div class="bg-white">
-					<div class="alert alert-success my-3 bg-success text-center text-white" role="alert">
-						TOTAL
+						
+					<div class="alert alert-success my-3 bg-success text-center" role="alert">
+						<strong>TOTAL</strong>
 					</div>
 						<table class="table table-sm table-hover table-bordered bg-white content-table-reporte">
 							<thead>
@@ -85,8 +87,20 @@
 								<tr>
 									<th></th>
 									<th></th>
-									<th class="text-right">Total</th>							
+									<th class="text-right bg-success">SubTotal</th>							
 									<th class="text-right bg-success">$ <?php echo number_format($suma,2,".","," ); ?></th>
+								</tr>
+								<tr>
+									<th></th>
+									<th></th>
+									<th class="text-right bg-success">Caja Inicial</th>							
+									<th class="text-right bg-success">$ <?php echo number_format($caja[0]['importe'],2,".","," ); ?></th>
+								</tr>
+								<tr>
+									<th></th>
+									<th></th>
+									<th class="text-right bg-success">Total en Caja</th>							
+									<th class="text-right bg-success">$ <?php echo number_format($suma + $caja[0]['importe'],2,".","," ); ?></th>
 								</tr>
 							</tfoot>
 						</table>

@@ -102,5 +102,11 @@ Class Reportes_model extends CI_model{
         return $query->result_array();
         //return $sql;
     }
+
+    function getCajaLast(){
+        $this->db->order_by('id', 'desc');
+        $this->db->limit(1);
+        return $this->db->get('saldo_inicial_caja')->result_array();
+    }
     
 }

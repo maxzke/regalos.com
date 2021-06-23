@@ -21,6 +21,7 @@ class Reportes extends MY_Controller{
 
     function getReporte(){
         $this->load->model('User_model');
+        $data['caja'] = $this->Reportes_model->getCajaLast();
         $data['usuarios'] = $this->User_model->get_all_users();
         $usuariosArray = [];
         $fechaInicial = $this->input->get('desde');
